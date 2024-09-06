@@ -10,15 +10,13 @@ using System.Threading.Tasks;
 
 public enum MovementType
 {
-    UpDownOnly,
-    WithCross
+    UpDownOnly,WithCross
 }
 
 [Serializable]
 public struct TravelDistance
 {
-    public float MinDistance;
-    public float MaxDistance;
+    public float MinDistance, MaxDistance;
 }
 
 [Serializable]
@@ -42,16 +40,21 @@ public class HoistBehaviour : MonoBehaviour
     public ForceMode ForceMode = ForceMode.Impulse;
     public SerializedDictionary<ObiRopeCursor, ObiRope> CursorRopes = new();
     public TravelDistance TravelDistance = new() { MinDistance = 0f, MaxDistance = 10f };
-    public float VelocityDampening = 1f;
-    [SerializeField] private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
+    
+    [Range(0f,1f)]
+    public float VelocityDampening = 0.5f;
+    [Range(0,200)]
+    public int MalfunctionForceAmt = 50;
 
 
+    [SerializeField] 
+    private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
+    private float _moveAmtCross = 0f, _moveAmtVert = 0f;
+    private float _initialRbDrag;
     private ObiSolverData _obisolverData;
     private ControllerSetup _controllerSetup;
     private InputAction _cross, _vertical, _switcher, _malfunction, _reset;
-    private float _moveAmtCross = 0f, _moveAmtVert = 0f;
     private Rigidbody _rigidbody;
-    private float _initialDrag;
     private Vector3 _currentVelocity;
 
 
@@ -67,7 +70,7 @@ public class HoistBehaviour : MonoBehaviour
                             setAng: 5f
                         );
         _rigidbody = GetComponent<Rigidbody>();
-        _initialDrag = _rigidbody.drag;
+        _initialRbDrag = _rigidbody.drag;
         _minRopeLength = CursorRopes.Values.First().restLength;
 
     }
@@ -83,7 +86,7 @@ public class HoistBehaviour : MonoBehaviour
         _reset = _controllerSetup.Hoist.Reset;
 
         _switcher.performed += ctx => SwitchHoist();
-        _malfunction.performed += ctx => WreckHavoc();
+        _malfunction.performed += ctx => TriggerMalfunction();
         _reset.performed += ctx => ResetRope();
     }
 
@@ -92,7 +95,7 @@ public class HoistBehaviour : MonoBehaviour
         Debug.Log("Switching Hoist");
     }
 
-    private void WreckHavoc()
+    private void TriggerMalfunction()
     {
         _rigidbody.drag = 0f;
 
@@ -109,7 +112,7 @@ public class HoistBehaviour : MonoBehaviour
             float malfunctionLength = _malfunctionLength - rope.CalculateLength();
             cursor.ChangeLength(malfunctionLength);
 
-            _rigidbody.AddForce(Vector3.down * 50f, ForceMode);
+            _rigidbody.AddForce(Vector3.down * MalfunctionForceAmt, ForceMode);
         }
     }
 
@@ -122,8 +125,8 @@ public class HoistBehaviour : MonoBehaviour
     {
         "Reset called".Print();
 
-        if(_rigidbody.drag < _initialDrag) 
-            _rigidbody.drag = _initialDrag;
+        if(_rigidbody.drag < _initialRbDrag) 
+            _rigidbody.drag = _initialRbDrag;
 
         SetObiSolverProperties
         (
@@ -133,8 +136,10 @@ public class HoistBehaviour : MonoBehaviour
 
         foreach(var cursor in CursorRopes.Keys)
         {
-            float currLength = CursorRopes[cursor].CalculateLength();
-            cursor.ChangeLength(_minRopeLength - currLength);
+            ObiRope rope = CursorRopes[cursor];
+            float currRopeLength = rope.CalculateLength();
+            //switch _minRopeLength with last length maybe.
+            cursor.ChangeLength(_minRopeLength - currRopeLength);
         }
         
     }
@@ -146,10 +151,10 @@ public class HoistBehaviour : MonoBehaviour
 
         PerformUpDown();
 
-        if(HoistType == MovementType.WithCross && Hoist != null) PerformCross();
+        if(HoistType == MovementType.WithCross && Hoist != null) PerformCrossTravel();
     }
 
-    private void PerformCross()
+    private void PerformCrossTravel()
     {
         
         Vector3 targetPosition = Hoist.position + (Vector3.forward * _moveAmtCross * _maxSpeed);
@@ -168,8 +173,10 @@ public class HoistBehaviour : MonoBehaviour
     private void PerformUpDown()
     {
         //TODO: Implement 1-9 logic
-        float change = _moveAmtVert * Time.deltaTime * _maxSpeed;
-        
+
+        // dont remove Time.delta time,  when i removed it, it started behaving weirdly, idk why; didnt bother figuring out, try it if you want. if it doesnt malfunction then my bad fam
+        float change = _moveAmtVert * Time.deltaTime * _maxSpeed; 
+
         foreach(var kvp in CursorRopes)
         {
             var cursor = kvp.Key;
@@ -189,7 +196,8 @@ public class HoistBehaviour : MonoBehaviour
     {
         foreach (var cursor in CursorRopes.Keys)
         {
-            cursor.ChangeLength(CursorRopes[cursor].restLength);
+            ObiRope rope = CursorRopes[cursor];
+            cursor.ChangeLength(rope.restLength);
         }
         _controllerSetup.Hoist.Disable();
 
