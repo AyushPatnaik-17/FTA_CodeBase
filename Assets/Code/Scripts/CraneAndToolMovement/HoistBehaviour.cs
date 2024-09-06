@@ -6,6 +6,7 @@ using System;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
 using AlligatorUtils;
+using System.Threading.Tasks;
 
 public enum MovementType
 {
@@ -19,24 +20,52 @@ public struct TravelDistance
     public float MinDistance;
     public float MaxDistance;
 }
+
+[Serializable]
+public struct ObiSolverData
+{
+    public float OgVelocity, OgAngVelocity, SetVel, SetAngVel;
+
+    public ObiSolverData(float ogVel, float ogAng, float setVel, float setAng)
+    {
+        OgVelocity = ogVel;
+        OgAngVelocity = ogAng;
+        SetVel = setVel;
+        SetAngVel = setAng;
+    }
+}
 public class HoistBehaviour : MonoBehaviour
 {
+    public ObiSolver ObiSolver;
+    public MovementType HoistType;
+    public Transform Hoist;
+    public ForceMode ForceMode = ForceMode.Impulse;
+    public SerializedDictionary<ObiRopeCursor, ObiRope> CursorRopes = new();
+    public TravelDistance TravelDistance = new() { MinDistance = 0f, MaxDistance = 10f };
+    public float VelocityDampening = 1f;
+    [SerializeField] private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
+
+
+    private ObiSolverData _obisolverData;
     private ControllerSetup _controllerSetup;
     private InputAction _cross, _vertical, _switcher, _malfunction, _reset;
     private float _moveAmtCross = 0f, _moveAmtVert = 0f;
     private Rigidbody _rigidbody;
     private float _initialDrag;
+    private Vector3 _currentVelocity;
 
 
-    [SerializeField] private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
-    public MovementType HoistType;
-    public Transform Hoist;
-    public TravelDistance TravelDistance = new() { MinDistance = 0f, MaxDistance = 10f };
-    public SerializedDictionary<ObiRopeCursor, ObiRope> CursorRopes = new();
 
     private void Awake()
     {
         InitControls();
+        _obisolverData = new ObiSolverData
+                        (
+                            ogVel: ObiSolver.parameters.maxVelocity, 
+                            ogAng: ObiSolver.parameters.maxAngularVelocity,
+                            setVel: 5f, 
+                            setAng: 5f
+                        );
         _rigidbody = GetComponent<Rigidbody>();
         _initialDrag = _rigidbody.drag;
         _minRopeLength = CursorRopes.Values.First().restLength;
@@ -63,10 +92,15 @@ public class HoistBehaviour : MonoBehaviour
         Debug.Log("Switching Hoist");
     }
 
-    public ForceMode ForceMode = ForceMode.Impulse;
     private void WreckHavoc()
     {
         _rigidbody.drag = 0f;
+
+        SetObiSolverProperties
+        (
+            vel: _obisolverData.SetVel, 
+            angVel: _obisolverData.SetAngVel
+        );
 
         foreach (var cursor in CursorRopes.Keys)
         {
@@ -78,10 +112,25 @@ public class HoistBehaviour : MonoBehaviour
             _rigidbody.AddForce(Vector3.down * 50f, ForceMode);
         }
     }
+
+    private void SetObiSolverProperties(float vel , float angVel)
+    {
+        ObiSolver.parameters.maxVelocity = vel;
+        ObiSolver.parameters.maxAngularVelocity = angVel;
+    }
     private void ResetRope()
     {
         "Reset called".Print();
-        if(_rigidbody.drag < _initialDrag) _rigidbody.drag = _initialDrag;
+
+        if(_rigidbody.drag < _initialDrag) 
+            _rigidbody.drag = _initialDrag;
+
+        SetObiSolverProperties
+        (
+            vel: _obisolverData.OgVelocity, 
+            angVel: _obisolverData.OgAngVelocity
+        );
+
         foreach(var cursor in CursorRopes.Keys)
         {
             float currLength = CursorRopes[cursor].CalculateLength();
@@ -100,15 +149,13 @@ public class HoistBehaviour : MonoBehaviour
         if(HoistType == MovementType.WithCross && Hoist != null) PerformCross();
     }
 
-    private Vector3 _currentVelocity;
-    public float VelocityDampening = 1f;
     private void PerformCross()
     {
         
         Vector3 targetPosition = Hoist.position + (Vector3.forward * _moveAmtCross * _maxSpeed);
-        float clampedDistance = Mathf.Clamp(targetPosition.z, TravelDistance.MinDistance, TravelDistance.MaxDistance);
-        //  Hoist.position = new Vector3(Hoist.position.x, targetPosition.y, Mathf.Lerp(Hoist.position.z, targetPosition.z, Time.deltaTime));
+
         targetPosition.z = Mathf.Clamp(targetPosition.z, TravelDistance.MinDistance, TravelDistance.MaxDistance);
+
         Hoist.position = Vector3.SmoothDamp
         (
             Hoist.position,
@@ -122,6 +169,7 @@ public class HoistBehaviour : MonoBehaviour
     {
         //TODO: Implement 1-9 logic
         float change = _moveAmtVert * Time.deltaTime * _maxSpeed;
+        
         foreach(var kvp in CursorRopes)
         {
             var cursor = kvp.Key;
@@ -133,19 +181,18 @@ public class HoistBehaviour : MonoBehaviour
         }
     }
 
-    
-
     private void OnEnable()
     {
         _controllerSetup.Hoist.Enable();
     }
     private void OnDisable()
     {
-        foreach(var cursor in CursorRopes.Keys)
+        foreach (var cursor in CursorRopes.Keys)
         {
             cursor.ChangeLength(CursorRopes[cursor].restLength);
         }
         _controllerSetup.Hoist.Disable();
+
     }
 
 }
