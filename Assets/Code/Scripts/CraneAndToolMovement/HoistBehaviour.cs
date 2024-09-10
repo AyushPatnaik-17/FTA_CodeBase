@@ -162,6 +162,7 @@ public class HoistBehaviour : MonoBehaviour
     // }
     private void FixedUpdate()
     {  
+        DirectionToMove.Print("Direction: ", "yellow");
         _moveAmtCross = _cross.ReadValue<Vector2>().x;
         _moveAmtVert = _vertical.ReadValue<Vector2>().y;
 

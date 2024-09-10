@@ -5,13 +5,13 @@ using UnityEngine;
 public class HoistAssitant : MonoBehaviour
 {
     public Transform Hoist;
-    public float radius = 10f;
+    public float DetectionRadius = 10f;
 
     private void Update()
     {
         Vector3 relativePosition = Hoist.position - transform.position;
 
-        if (relativePosition.magnitude <= radius)
+        if (relativePosition.magnitude <= DetectionRadius)
         {
             var hoistScript = Hoist.GetComponent<HoistBehaviour>();
 
@@ -24,7 +24,6 @@ public class HoistAssitant : MonoBehaviour
 
     private Direction GetProminentDirection(Vector3 relativePos)
     {
-        // Determine the prominent direction based on the relative position
         if (Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.z))
         {
             return relativePos.x > 0 ? Direction.Right : Direction.Left;
@@ -43,6 +42,6 @@ public class HoistAssitant : MonoBehaviour
     {
         // Draw the radius for visual aid
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, DetectionRadius);
     }
 }
