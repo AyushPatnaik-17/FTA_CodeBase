@@ -6,8 +6,11 @@ using System;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
 using AlligatorUtils;
-using System.Threading.Tasks;
 
+public enum Direction
+{
+    None,Up,Down,Left,Right,Forward,Backward
+}
 public enum MovementType
 {
     UpDownOnly,WithCross
@@ -36,8 +39,10 @@ public class HoistBehaviour : MonoBehaviour
 {
     public ObiSolver ObiSolver;
     public MovementType HoistType;
+    public GameObject TrackedObject;
     public Transform Hoist;
     public ForceMode ForceMode = ForceMode.Impulse;
+    public Direction DirectionToMove = Direction.None;
     public SerializedDictionary<ObiRopeCursor, ObiRope> CursorRopes = new();
     public TravelDistance TravelDistance = new() { MinDistance = 0f, MaxDistance = 10f };
     
@@ -144,6 +149,17 @@ public class HoistBehaviour : MonoBehaviour
         
     }
 
+    // void Update()
+    // {
+    //     float distance = Vector3.Distance(transform.position, TargetObject.position);
+
+    //     if (distance <= DetectionRadius)
+    //     {
+    //         Vector3 direction = (TargetObject.position - transform.position).normalized;
+    //         DetermineToDirection(direction);
+    //         //MultidimensionalCheck(direction);
+    //     }
+    // }
     private void FixedUpdate()
     {  
         _moveAmtCross = _cross.ReadValue<Vector2>().x;
@@ -185,6 +201,36 @@ public class HoistBehaviour : MonoBehaviour
             if(rope.restLength + change < _minRopeLength) change = _minRopeLength - rope.restLength;
 
             cursor.ChangeLength(change);
+        }
+    }
+
+    private void MultidimensionalCheck(Vector3 direction)
+    {
+        if (direction.x > 0)
+        {
+            Debug.Log("Move Right");
+        }
+        else if (direction.x < 0)
+        {
+            Debug.Log("Move Left");
+        }
+
+        if (direction.y > 0)
+        {
+            Debug.Log("Move Up");
+        }
+        else if (direction.y < 0)
+        {
+            Debug.Log("Move Down");
+        }
+
+        if (direction.z > 0)
+        {
+            Debug.Log("Move Forward");
+        }
+        else if (direction.z < 0)
+        {
+            Debug.Log("Move Backward");
         }
     }
 
