@@ -26,21 +26,20 @@ public class HoistAssitant : MonoBehaviour
     {
         if (Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.z))
         {
-            return relativePos.x > 0 ? Direction.Right : Direction.Left;
+            return relativePos.x > 0 ? Direction.Left : Direction.Right;
         }
         else if (Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.z))
         {
-            return relativePos.y > 0 ? Direction.Up : Direction.Down;
+            return relativePos.y > 0 ? Direction.Down : Direction.Up;
         }
         else
         {
-            return relativePos.z > 0 ? Direction.Forward : Direction.Backward;
+            return relativePos.z > 0 ? Direction.Backward : Direction.Forward;
         }
     }
 
     private void OnDrawGizmos()
     {
-        // Draw the radius for visual aid
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, DetectionRadius);
     }
