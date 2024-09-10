@@ -6,7 +6,7 @@ public class HoistAssitant : MonoBehaviour
 {
     public Transform Hoist;
     public float DetectionRadius = 10f;
-
+    public float ThresholdDistance = 0.5f;
     private void Update()
     {
         Vector3 relativePosition = Hoist.position - transform.position;
@@ -24,17 +24,21 @@ public class HoistAssitant : MonoBehaviour
 
     private Direction GetProminentDirection(Vector3 relativePos)
     {
-        if (Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.z))
+        if (Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.x) > Mathf.Abs(relativePos.z) && Mathf.Abs(relativePos.x) > ThresholdDistance)
         {
             return relativePos.x > 0 ? Direction.Left : Direction.Right;
         }
-        else if (Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.z))
+        else if (Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.z) && Mathf.Abs(relativePos.x) > ThresholdDistance)
         {
             return relativePos.y > 0 ? Direction.Down : Direction.Up;
         }
-        else
+        else if(Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.y) > ThresholdDistance)
         {
             return relativePos.z > 0 ? Direction.Backward : Direction.Forward;
+        }
+        else
+        {
+            return Direction.None;
         }
     }
 
