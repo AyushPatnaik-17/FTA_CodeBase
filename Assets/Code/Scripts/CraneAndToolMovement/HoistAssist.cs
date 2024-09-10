@@ -12,11 +12,17 @@ public class HoistAssist : MonoBehaviour
         if (distance <= detectionRadius)
         {
             Vector3 direction = (targetObject.position - transform.position).normalized;
-            DetermineDirection(direction);
+            DetermineToDirection(direction);
+            //MultidimensionalCheck(direction);
         }
     }
 
-    void DetermineDirection(Vector3 direction)
+    void DetermineToDirection(Vector3 direction)
+    {
+        
+    }
+
+    private void MultidimensionalCheck(Vector3 direction)
     {
         if (direction.x > 0)
         {
