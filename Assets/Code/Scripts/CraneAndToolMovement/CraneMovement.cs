@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using AlligatorUtils;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Utilities.Tweenables.Primitives;
 
 public class CraneMovement : MonoBehaviour
 {
@@ -19,29 +21,47 @@ public class CraneMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            MoveCraneLT(-1);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            MoveCraneLT(1);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            MoveCraneCT(1);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            MoveCraneCT(-1);
-        }
+        float horInput = Input.GetAxis("Horizontal");
+        float verInput = Input.GetAxis("Vertical");
+        //horInput.Print("Current Hor input: ");
+        if(horInput > 0)
+            MoveCraneLT(horInput);
+        if(verInput >  0)
+            MoveCraneCT(verInput);
+        // if (Input.GetKey(KeyCode.A))
+        // {
+        //     MoveCraneLT(-1);
+        // }
+        // if (Input.GetKey(KeyCode.D))
+        // {
+        //     MoveCraneLT(1);
+        // }
+        // if (Input.GetKey(KeyCode.W))
+        // {
+        //     MoveCraneCT(1);
+        // }
+        // if (Input.GetKey(KeyCode.S))
+        // {
+        //     MoveCraneCT(-1);
+        // }
     }
 
+    private Vector3 _currentVelocity;
     public void MoveCraneLT(float input)
     {
-        if (Mathf.Abs(input) < 0.3f)
-            return;
-        crane.transform.Translate(Vector3.right * ltSpeed * Time.deltaTime * input * multiplier);
+        // if (Mathf.Abs(input) < 0.3f)
+        //     return;
+        "MoveCraneLT called".Print();
+        input.Print("lt input: ");
+        // crane.transform.Translate(Vector3.right * ltSpeed * Time.deltaTime * input * multiplier;
+        Vector3 targetPos = crane.transform.position + (Vector3.right * ltSpeed * Time.deltaTime * input);
+        crane.transform.position = Vector3.SmoothDamp
+        (
+            crane.transform.position,
+            new Vector3(targetPos.x, crane.transform.position.y, crane.transform.position.z),
+            ref _currentVelocity,
+            0.5f
+        );
     }
 
     

@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using AlligatorUtils;
 using UnityEngine;
 
 public class HoistAssitant : MonoBehaviour
 {
     public Transform Hoist;
+    public Transform AttachPoint;
     public float DetectionRadius = 10f;
     public float ThresholdDistance = 0.5f;
+
+    public float Distance = 0f;
     private void Update()
     {
         Vector3 relativePosition = Hoist.position - transform.position;
-
+        Distance = Vector3.Distance(Hoist.position,AttachPoint.position);
         if (relativePosition.magnitude <= DetectionRadius)
         {
             var hoistScript = Hoist.GetComponent<HoistBehaviour>();
+            //relativePosition.magnitude.Print("relative distance:", "red");
+            if(Distance <= ThresholdDistance)
+            {
+                hoistScript.DirectionToMove = Direction.None;
+                return;
+            }
 
             if (hoistScript != null)
             {
