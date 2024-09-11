@@ -5,22 +5,27 @@ using UnityEngine;
 
 public class HoistAssitant : MonoBehaviour
 {
-    public Transform Hoist;
-    public Transform AttachPoint;
-    public float DetectionRadius = 10f;
-    public float ThresholdDistance = 0.5f;
+    public Transform Hoist, AttachPoint;
+    public float DetectionRadius = 10f, ThresholdDistance = 0.5f;
 
-    public float Distance = 0f;
+    public HingeJoint Joint;
+    public float _distance = 0f;
     private void Update()
     {
         Vector3 relativePosition = Hoist.position - transform.position;
-        Distance = Vector3.Distance(Hoist.position,AttachPoint.position);
+        _distance = Vector3.Distance(Hoist.position,AttachPoint.position);
         if (relativePosition.magnitude <= DetectionRadius)
         {
             var hoistScript = Hoist.GetComponent<HoistBehaviour>();
             //relativePosition.magnitude.Print("relative distance:", "red");
-            if(Distance <= ThresholdDistance)
+            if(_distance <= ThresholdDistance)
             {
+                if(Hoist != null)
+                {
+                    "Joint Attached".Print("","red");
+                    Hoist.position = AttachPoint.position;
+                    Joint.connectedBody = Hoist.GetComponent<Rigidbody>();
+                }
                 hoistScript.DirectionToMove = Direction.None;
                 return;
             }
@@ -38,11 +43,11 @@ public class HoistAssitant : MonoBehaviour
         {
             return relativePos.x > 0 ? Direction.Left : Direction.Right;
         }
-        else if (Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.z) && Mathf.Abs(relativePos.x) > ThresholdDistance)
+        else if (Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.y) > Mathf.Abs(relativePos.z) && Mathf.Abs(relativePos.y) > ThresholdDistance)
         {
             return relativePos.y > 0 ? Direction.Down : Direction.Up;
         }
-        else if(Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.y) > ThresholdDistance)
+        else if(Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.x) && Mathf.Abs(relativePos.z) > Mathf.Abs(relativePos.y) && Mathf.Abs(relativePos.z) > ThresholdDistance)
         {
             return relativePos.z > 0 ? Direction.Backward : Direction.Forward;
         }

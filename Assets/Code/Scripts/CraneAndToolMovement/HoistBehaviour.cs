@@ -160,6 +160,9 @@ public class HoistBehaviour : MonoBehaviour
     //         //MultidimensionalCheck(direction);
     //     }
     // }
+
+    //Debuggng
+    public bool IsCross = false;
     private void FixedUpdate()
     {  
         DirectionToMove.Print("Move ", "yellow");
@@ -173,15 +176,14 @@ public class HoistBehaviour : MonoBehaviour
 
     private void PerformCrossTravel()
     {
-        
-        Vector3 targetPosition = Hoist.position + (Vector3.forward * _moveAmtCross * _maxSpeed);
-
+        Vector3 targetPosition = Hoist.position + (Vector3.one * _moveAmtCross * _maxSpeed);
         targetPosition.z = Mathf.Clamp(targetPosition.z, TravelDistance.MinDistance, TravelDistance.MaxDistance);
+        Vector3 targetVector = IsCross? new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z) : new Vector3(targetPosition.x, Hoist.position.y, Hoist.position.z);
 
         Hoist.position = Vector3.SmoothDamp
         (
             Hoist.position,
-            new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z),
+            targetVector,//new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z),
             ref _currentVelocity,
             VelocityDampening
         );
