@@ -69,12 +69,12 @@ public class HoistBehaviour : MonoBehaviour
     {
         InitControls();
         _obisolverData = new ObiSolverData
-                        (
-                            ogVel: ObiSolver.parameters.maxVelocity, 
-                            ogAng: ObiSolver.parameters.maxAngularVelocity,
-                            setVel: 5f, 
-                            setAng: 5f
-                        );
+        (
+            ogVel: ObiSolver.parameters.maxVelocity, 
+            ogAng: ObiSolver.parameters.maxAngularVelocity,
+            setVel: 5f, 
+            setAng: 5f
+        );
         _rigidbody = GetComponent<Rigidbody>();
         _initialRbDrag = _rigidbody.drag;
         _minRopeLength = CursorRopes.Values.First().restLength;
@@ -152,14 +152,15 @@ public class HoistBehaviour : MonoBehaviour
 
     void Update()
     {
-       if (Vector3.Distance(_lastPosition, transform.position) > 0.01f)
+        float distance = Vector3.Distance(_lastPosition, transform.position);
+       if ( distance > 0.01f)
         {
             OnHoistMoved?.Invoke();
             _lastPosition = transform.position;
         }
     }
 
-    //Debuggng
+    //Debugging
     //public bool IsCross = false;
     private void FixedUpdate()
     {  
