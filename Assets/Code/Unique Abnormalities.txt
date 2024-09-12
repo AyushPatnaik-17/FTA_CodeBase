@@ -1,0 +1,37 @@
+Here is a list of all the unique abnormalities mentioned:
+
+1. Tools down during movement and hit other object
+2. High vibration leading to disturbance in operation
+3. Collision with head wall
+4. Foul with any other object during movement
+5. Damage of rope and falling of pipe
+6. Damage of pulley
+7. One pipe being in bypassed condition due to some problem
+8. Hit with central conveyor
+9. Wireless communication failure
+10. Slip of anode from grab
+11. Grab locking not proper
+12. Grab hoist fall due to damage of rope
+13. Fall of hoist due to malfunctioning of rope
+14. Hit of ramps with other object
+15. Malfunctioning of straightening machine
+16. Improper positioning of FTA at desired location
+17. Positioning problem of dust discharge chute over dust hopper
+18. Leakage of dust from discharge hopper
+19. Guiding chain damage
+20. Collision of dust discharge chute with anode on central conveyor
+21. Fall of suction pipe due to rope damage
+22. Hit coke bin/coke truck with suction pipe
+23. Spillage of coke/lumps while suction pipe gets up
+24. Long travel telemeter fault
+25. Damage of cables in central conveyor
+26. Overload presence fault of 6.3 ton hoist
+27. Hitting anode with wall
+28. Emergency fault during LT/CT
+29. Watchdog communication fault
+30. Tilting of ramp
+31. Over speed fault
+32. LT forward/reverse limit sensed
+33. CT forward/reverse sensor sensed
+34. Hit the ramp with DSL
+35. Hit the ramp with central conveyor
