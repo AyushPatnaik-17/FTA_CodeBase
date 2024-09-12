@@ -51,16 +51,17 @@ public class HoistBehaviour : MonoBehaviour
     [Range(0,200)]
     public int MalfunctionForceAmt = 50;
 
+    public event Action OnHoistMoved;
+
 
     [SerializeField] 
     private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
-    private float _moveAmtCross = 0f, _moveAmtVert = 0f;
-    private float _initialRbDrag;
+    private float _moveAmtCross = 0f, _moveAmtVert = 0f,_initialRbDrag;
     private ObiSolverData _obisolverData;
     private ControllerSetup _controllerSetup;
     private InputAction _cross, _vertical, _switcher, _malfunction, _reset;
     private Rigidbody _rigidbody;
-    private Vector3 _currentVelocity;
+    private Vector3 _currentVelocity, _lastPosition;
 
 
 
@@ -149,20 +150,17 @@ public class HoistBehaviour : MonoBehaviour
         
     }
 
-    // void Update()
-    // {
-    //     float distance = Vector3.Distance(transform.position, TargetObject.position);
-
-    //     if (distance <= DetectionRadius)
-    //     {
-    //         Vector3 direction = (TargetObject.position - transform.position).normalized;
-    //         DetermineToDirection(direction);
-    //         //MultidimensionalCheck(direction);
-    //     }
-    // }
+    void Update()
+    {
+       if (Vector3.Distance(_lastPosition, transform.position) > 0.01f)
+        {
+            OnHoistMoved?.Invoke();
+            _lastPosition = transform.position;
+        }
+    }
 
     //Debuggng
-    public bool IsCross = false;
+    //public bool IsCross = false;
     private void FixedUpdate()
     {  
         DirectionToMove.Print("Move ", "yellow");
@@ -178,7 +176,8 @@ public class HoistBehaviour : MonoBehaviour
     {
         Vector3 targetPosition = Hoist.position + (Vector3.one * _moveAmtCross * _maxSpeed);
         targetPosition.z = Mathf.Clamp(targetPosition.z, TravelDistance.MinDistance, TravelDistance.MaxDistance);
-        Vector3 targetVector = IsCross? new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z) : new Vector3(targetPosition.x, Hoist.position.y, Hoist.position.z);
+        // Vector3 targetVector = IsCross? new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z) : new Vector3(targetPosition.x, Hoist.position.y, Hoist.position.z);
+        Vector3 targetVector = new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z);
 
         Hoist.position = Vector3.SmoothDamp
         (
