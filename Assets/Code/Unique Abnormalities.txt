@@ -1,5 +1,3 @@
-Here is a list of all the unique abnormalities mentioned:
-
 1. Tools down during movement and hit other object
 2. High vibration leading to disturbance in operation
 3. Collision with head wall

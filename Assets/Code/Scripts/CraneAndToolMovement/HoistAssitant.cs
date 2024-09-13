@@ -12,15 +12,19 @@ public class HoistAssitant : MonoBehaviour
     public event Action OnHoistAttached;
     public event Action<Direction> OnDirectionChanged;
 
+    [SerializeField]
+    private float _attachTime = 0f;
     private Coroutine _proximityCoroutine;
     private bool _isMonitoring = false;
+    private HoistBehaviour _hoistBehaviour;
 
     private void Start()
     {
-        OnHoistAttached += HandleHoistAttached;
-        OnDirectionChanged += HandleDirectionChanged;
+        OnHoistAttached += HandleHoistAttach;
+        OnDirectionChanged += HandleDirectionChange;
 
-        Hoist.GetComponent<HoistBehaviour>().OnHoistMoved += StartProximityCheck;
+        _hoistBehaviour = Hoist.GetComponent<HoistBehaviour>();
+        _hoistBehaviour.OnHoistMoved += StartProximityCheck;
     }
 
     private void StartProximityCheck()
@@ -101,14 +105,31 @@ public class HoistAssitant : MonoBehaviour
         }
     }
 
-     private void HandleHoistAttached()
+     private void HandleHoistAttach()
     {
-        "Joint Attached".Print("", "red");
-        Hoist.position = AttachPoint.position;
-        Joint.connectedBody = Hoist.GetComponent<Rigidbody>();
+        "Joint Attaching".Print("", "red");
+        //Hoist.position = AttachPoint.position;
+        StartCoroutine(AttachHoist());
     }
 
-    private void HandleDirectionChanged(Direction newDirection)
+    private IEnumerator AttachHoist()
+    {
+        float elapsedTime = 0f;
+        Vector3 startPos = Hoist.position;
+        while (elapsedTime < _attachTime)
+        {
+            elapsedTime += Time.deltaTime;
+            float lerpFactor = elapsedTime/_attachTime;
+            Hoist.position = Vector3.Lerp(startPos, AttachPoint.position, lerpFactor);
+            yield return null;
+        }
+        Hoist.position = AttachPoint.position;
+        Joint.connectedBody = Hoist.GetComponent<Rigidbody>();
+        "Joint Attached".Print("", "red");
+
+    }
+
+    private void HandleDirectionChange(Direction newDirection)
     {
         var hoistScript = Hoist.GetComponent<HoistBehaviour>();
         if (hoistScript != null)
@@ -124,8 +145,8 @@ public class HoistAssitant : MonoBehaviour
             StopCoroutine(_proximityCoroutine);
         }
 
-        OnHoistAttached -= HandleHoistAttached;
-        OnDirectionChanged -= HandleDirectionChanged;
+        OnHoistAttached -= HandleHoistAttach;
+        OnDirectionChanged -= HandleDirectionChange;
     }
     private void OnDrawGizmos()
     {
