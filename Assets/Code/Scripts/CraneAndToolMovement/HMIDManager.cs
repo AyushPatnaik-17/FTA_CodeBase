@@ -8,13 +8,15 @@ using UnityEngine.UI;
 
 public class HMIDManager : MonoBehaviour
 {
+    public const string PREFIX = "Do you want to select ";
     public List<Abnormality> Abnormalities;
     public SerializedDictionary<Button, Abnormality> AbnormalityButtonPairs = new();
-    public Abnormality CurrentAbnormality;
-
     public Transform ButtonsParent;
-    public Button ButtonPrefab;
+    public GameObject ConfirmationPanel;
+    public Button ButtonPrefab, YesBtn, NoBtn;
+    public TextMeshProUGUI ConfirmationText;
 
+    private Abnormality _currentAbnormality,_selectedAbnormality;
     private void Awake()
     {
         foreach(Abnormality abnormality in  Abnormalities)
@@ -23,10 +25,25 @@ public class HMIDManager : MonoBehaviour
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = abnormality.Name;
             AbnormalityButtonPairs.Add(button, abnormality);
-            button.onClick.AddListener(() => CheckAbnormality(AbnormalityButtonPairs[button]));
+            button.onClick.AddListener(() =>
+            {
+                _selectedAbnormality = AbnormalityButtonPairs[button];
+                ConfirmationText.text = $"{PREFIX}{_selectedAbnormality.Name}";
+                ConfirmationPanel.SetActive(true);
+            });
         }
-        AbnormalityButtonPairs.Keys.Print();
+
+        YesBtn.onClick.AddListener(delegate
+        {
+            CheckAbnormality();
+            ConfirmationPanel.SetActive(false);
+        });
+        NoBtn.onClick.AddListener(delegate
+        {
+            ConfirmationPanel.SetActive(false);
+        }); 
     }
+
 
     private void Update()
     {
@@ -38,21 +55,21 @@ public class HMIDManager : MonoBehaviour
     public void TriggerRandomAbnormality()
     {
         int index = Random.Range(0, Abnormalities.Count);
-        CurrentAbnormality = Abnormalities[index];
-        CurrentAbnormality.TriggerAction();
+        _currentAbnormality = Abnormalities[index];
+        _currentAbnormality.TriggerAction();
     }
 
-    public bool IsAbnormalityActive()
+    // public bool IsAbnormalityActive()
+    // {
+    //     return CurrentAbnormality != null;
+    // }
+    public void CheckAbnormality()
     {
-        return CurrentAbnormality != null;
-    }
-    public void CheckAbnormality(Abnormality selectedAbnormality)
-    {
-        if (CurrentAbnormality == selectedAbnormality)
+        if (_currentAbnormality == _selectedAbnormality)
         {
             "Correct Abnormality Detected!".Print("","green");
         }
-        else if (!IsAbnormalityActive())
+        else if (_currentAbnormality == null)
         {
             "No abnormality has occurred.".Print("","red");
         }
