@@ -23,12 +23,12 @@ public class HMIDManager : MonoBehaviour
         {
             Button button = Instantiate(ButtonPrefab,ButtonsParent);
             TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = abnormality.Name;
+            button.name = buttonText.text = abnormality.Name;
             AbnormalityButtonPairs.Add(button, abnormality);
             button.onClick.AddListener(() =>
             {
                 _selectedAbnormality = AbnormalityButtonPairs[button];
-                ConfirmationText.text = $"{PREFIX}{_selectedAbnormality.Name}";
+                ConfirmationText.text = $"{PREFIX}{_selectedAbnormality.Name}"; 
                 ConfirmationPanel.SetActive(true);
             });
         }
