@@ -116,7 +116,7 @@ public class HoistAssitant : MonoBehaviour
     {
         float elapsedTime = 0f;
         Vector3 startPos = Hoist.position;
-        while (elapsedTime < _attachTime)
+        while (elapsedTime <= _attachTime)
         {
             elapsedTime += Time.deltaTime;
             float lerpFactor = elapsedTime/_attachTime;
@@ -124,6 +124,7 @@ public class HoistAssitant : MonoBehaviour
             yield return null;
         }
         Hoist.position = AttachPoint.position;
+        yield return new WaitForSeconds(1.5f);
         Joint.connectedBody = Hoist.GetComponent<Rigidbody>();
         "Joint Attached".Print("", "red");
 

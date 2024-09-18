@@ -6,6 +6,7 @@ using System;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
 using AlligatorUtils;
+using System.Collections.Generic;
 
 public enum Direction
 {
@@ -55,7 +56,7 @@ public class HoistBehaviour : MonoBehaviour
 
 
     [SerializeField] 
-    private float _maxSpeed = 10f, _minRopeLength = 0f, _malfunctionLength = 20f;
+    private float _maxVertSpeed = 10f, _maxHorSpeed = 10f,_minRopeLength = 0f, _malfunctionLength = 20f;
     private float _moveAmtCross = 0f, _moveAmtVert = 0f,_initialRbDrag;
     private ObiSolverData _obisolverData;
     private ControllerSetup _controllerSetup;
@@ -78,7 +79,6 @@ public class HoistBehaviour : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _initialRbDrag = _rigidbody.drag;
         _minRopeLength = CursorRopes.Values.First().restLength;
-
     }
 
     private void InitControls()
@@ -175,7 +175,7 @@ public class HoistBehaviour : MonoBehaviour
 
     private void PerformCrossTravel()
     {
-        Vector3 targetPosition = Hoist.position + (Vector3.one * _moveAmtCross * _maxSpeed);
+        Vector3 targetPosition = Hoist.position + (Vector3.one * _moveAmtCross * _maxHorSpeed);
         targetPosition.z = Mathf.Clamp(targetPosition.z, TravelDistance.MinDistance, TravelDistance.MaxDistance);
         // Vector3 targetVector = IsCross? new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z) : new Vector3(targetPosition.x, Hoist.position.y, Hoist.position.z);
         Vector3 targetVector = new Vector3(Hoist.position.x, Hoist.position.y, targetPosition.z);
@@ -194,7 +194,7 @@ public class HoistBehaviour : MonoBehaviour
         //TODO: Implement 1-9 logic
 
         // dont remove Time.delta time,  when i removed it, it started behaving weirdly, idk why; didnt bother figuring out, try it if you want. if it doesnt malfunction then my bad fam
-        float change = _moveAmtVert * Time.deltaTime * _maxSpeed; 
+        float change = _moveAmtVert * Time.deltaTime * _maxVertSpeed; 
 
         foreach(var kvp in CursorRopes)
         {
