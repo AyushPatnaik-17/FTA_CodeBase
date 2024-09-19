@@ -57,12 +57,15 @@ public class HoistBehaviour : MonoBehaviour
 
     [SerializeField] 
     private float _maxVertSpeed = 10f, _maxHorSpeed = 10f,_minRopeLength = 0f, _malfunctionLength = 20f;
+    [SerializeField]
+    private HoistBehaviour _otherHoist;
     private float _moveAmtCross = 0f, _moveAmtVert = 0f,_initialRbDrag;
     private ObiSolverData _obisolverData;
     private ControllerSetup _controllerSetup;
     private InputAction _cross, _vertical, _switcher, _malfunction, _reset;
     private Rigidbody _rigidbody;
     private Vector3 _currentVelocity, _lastPosition;
+
 
 
 
@@ -79,6 +82,8 @@ public class HoistBehaviour : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _initialRbDrag = _rigidbody.drag;
         _minRopeLength = CursorRopes.Values.First().restLength;
+
+
     }
 
     private void InitControls()
@@ -98,7 +103,9 @@ public class HoistBehaviour : MonoBehaviour
 
     private void SwitchHoist()
     {
-        Debug.Log("Switching Hoist");
+        _otherHoist.name.Print("Switching hoist to: ");
+        this.enabled = false;
+        _otherHoist.enabled = true;
     }
 
     private void TriggerMalfunction()
@@ -243,13 +250,7 @@ public class HoistBehaviour : MonoBehaviour
     }
     private void OnDisable()
     {
-        foreach (var cursor in CursorRopes.Keys)
-        {
-            ObiRope rope = CursorRopes[cursor];
-            cursor.ChangeLength(rope.restLength);
-        }
         _controllerSetup.Hoist.Disable();
-
     }
 
 }

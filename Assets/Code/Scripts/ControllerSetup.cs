@@ -130,6 +130,494 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Controls"",
+            ""id"": ""50e1b1f3-47b4-4aff-aafb-7afb0332bd55"",
+            ""actions"": [
+                {
+                    ""name"": ""Joystick 1"",
+                    ""type"": ""Value"",
+                    ""id"": ""92037f57-461b-466e-ba10-28e0a2266caf"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Joystick 2"",
+                    ""type"": ""Value"",
+                    ""id"": ""765eb5ba-f369-40a4-8e04-c5cc0bfaf29c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotary 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""faf6dbfd-725f-4c91-a93e-2bec38175bd3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotary 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c500264-4017-4c70-a01c-b632dca9cbb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotary 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""f659587f-8bd2-412b-b96d-4df1609536b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotary 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""b81950ac-51ac-4041-8ad5-5e3d54e8a87f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Left] PushButton 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fedca32-059e-4efd-bc9e-3b3fe52c85f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Left] PushButton 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""93d62822-7f62-4f29-bd53-9228798ded89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Left] PushButton 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""706c5300-7bf2-4b5a-8bc3-1f293b6b6b23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Left] PushButton 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7f74484-d71f-4b74-95ac-bbff2ac0691a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownShift"",
+                    ""type"": ""Button"",
+                    ""id"": ""01f90bc6-7116-49e3-a3f2-bd02432d4d65"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpShift"",
+                    ""type"": ""Button"",
+                    ""id"": ""9b795d01-79bb-4e34-b3e4-5ff45f19ce2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JS1B1"",
+                    ""type"": ""Button"",
+                    ""id"": ""be5ab2cb-fff6-4751-8fa0-29f36c358428"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JS1B2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b622d21f-19df-43fc-9788-c3ec331efaf5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JS2B1"",
+                    ""type"": ""Button"",
+                    ""id"": ""d2f299ce-c632-4c94-a07c-997182b0a811"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JS2B2"",
+                    ""type"": ""Button"",
+                    ""id"": ""27483d3a-bc78-4648-8256-d1f7f4e0b269"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c117503a-6500-48fa-ba69-0693fa1ebaf6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 2"",
+                    ""type"": ""Button"",
+                    ""id"": ""e798096a-f2c0-4717-be99-ce9ec9eeb37e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 3"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f72b994-1b78-40de-a3ec-a93c39071ce1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 4"",
+                    ""type"": ""Button"",
+                    ""id"": ""b785038e-b509-48e2-a356-7bc61150e091"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 5"",
+                    ""type"": ""Button"",
+                    ""id"": ""c31aae26-549d-4794-a479-51ec674f5099"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 6"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d41dd62-c4f0-446e-bbad-d87fc79d9c51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 7"",
+                    ""type"": ""Button"",
+                    ""id"": ""d59a490d-9abe-4e42-8933-940a333706aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""[Right] PushButton 8"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e2d1bdf-6c36-4640-924d-a819d0954e88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8dd0cdb3-5e6f-426e-9e99-a30c9e1a8636"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Joystick 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ba8920e3-5af7-4df6-983c-faf27a856992"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotary 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2df802ee-a2de-4776-a3b3-3ea83dba47d6"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Left] PushButton 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d0d5d87-e29d-4c81-9f18-5e5edd4ded0a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownShift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5d3b191-76ca-458c-89cb-8882a7d923ab"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Joystick 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43db3953-7fd4-4dbd-891a-2f10d4b43721"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotary 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9a73154-73ef-4e5d-8754-7dd335c935bc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotary 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eb4a305-bca8-4cca-b264-8e4314743e40"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotary 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60484c5d-1c45-4f52-aa4b-9ccf03dffc2c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpShift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bb6e82c-3e23-40c1-932d-5adc3b84b0e1"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Left] PushButton 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b663c45-bdc2-4acb-917f-17f4f6b1a9c4"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Left] PushButton 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8a228d3-cae8-4294-a4eb-53425661962d"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Left] PushButton 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48274621-09b2-4421-b860-88431b56468c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JS1B1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""874d3df2-d48a-40f7-8a11-ed1f6b7589ba"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JS1B2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aab6c5e-ab54-4dff-9b93-f4cb90f7ee57"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JS2B1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71ac407e-e9a0-4505-95e7-2474342c38ff"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JS2B2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30b5a81f-ef60-45ff-8488-a55f04377b80"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df7b86e3-2537-4526-b4aa-c746e64398e5"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f752902e-b30c-4ccb-8c96-e57585d861f4"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e84c50a6-60f5-4c16-aca7-b8d37ef86a21"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61fc51da-a8ce-46ab-9cff-aec8b8d11472"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b012ccfc-f01f-41cc-a763-3861de4c10f9"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 6"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa9ca8cd-ca40-4e7a-8ebf-37db2ef92010"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d88909e-cbcf-4762-8ed1-af54bc637e34"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""[Right] PushButton 8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -141,6 +629,32 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         m_Hoist_Switcher = m_Hoist.FindAction("Switcher", throwIfNotFound: true);
         m_Hoist_Malfunction = m_Hoist.FindAction("Malfunction", throwIfNotFound: true);
         m_Hoist_Reset = m_Hoist.FindAction("Reset", throwIfNotFound: true);
+        // Controls
+        m_Controls = asset.FindActionMap("Controls", throwIfNotFound: true);
+        m_Controls_Joystick1 = m_Controls.FindAction("Joystick 1", throwIfNotFound: true);
+        m_Controls_Joystick2 = m_Controls.FindAction("Joystick 2", throwIfNotFound: true);
+        m_Controls_Rotary1 = m_Controls.FindAction("Rotary 1", throwIfNotFound: true);
+        m_Controls_Rotary2 = m_Controls.FindAction("Rotary 2", throwIfNotFound: true);
+        m_Controls_Rotary3 = m_Controls.FindAction("Rotary 3", throwIfNotFound: true);
+        m_Controls_Rotary4 = m_Controls.FindAction("Rotary 4", throwIfNotFound: true);
+        m_Controls_LeftPushButton1 = m_Controls.FindAction("[Left] PushButton 1", throwIfNotFound: true);
+        m_Controls_LeftPushButton2 = m_Controls.FindAction("[Left] PushButton 2", throwIfNotFound: true);
+        m_Controls_LeftPushButton3 = m_Controls.FindAction("[Left] PushButton 3", throwIfNotFound: true);
+        m_Controls_LeftPushButton4 = m_Controls.FindAction("[Left] PushButton 4", throwIfNotFound: true);
+        m_Controls_DownShift = m_Controls.FindAction("DownShift", throwIfNotFound: true);
+        m_Controls_UpShift = m_Controls.FindAction("UpShift", throwIfNotFound: true);
+        m_Controls_JS1B1 = m_Controls.FindAction("JS1B1", throwIfNotFound: true);
+        m_Controls_JS1B2 = m_Controls.FindAction("JS1B2", throwIfNotFound: true);
+        m_Controls_JS2B1 = m_Controls.FindAction("JS2B1", throwIfNotFound: true);
+        m_Controls_JS2B2 = m_Controls.FindAction("JS2B2", throwIfNotFound: true);
+        m_Controls_RightPushButton1 = m_Controls.FindAction("[Right] PushButton 1", throwIfNotFound: true);
+        m_Controls_RightPushButton2 = m_Controls.FindAction("[Right] PushButton 2", throwIfNotFound: true);
+        m_Controls_RightPushButton3 = m_Controls.FindAction("[Right] PushButton 3", throwIfNotFound: true);
+        m_Controls_RightPushButton4 = m_Controls.FindAction("[Right] PushButton 4", throwIfNotFound: true);
+        m_Controls_RightPushButton5 = m_Controls.FindAction("[Right] PushButton 5", throwIfNotFound: true);
+        m_Controls_RightPushButton6 = m_Controls.FindAction("[Right] PushButton 6", throwIfNotFound: true);
+        m_Controls_RightPushButton7 = m_Controls.FindAction("[Right] PushButton 7", throwIfNotFound: true);
+        m_Controls_RightPushButton8 = m_Controls.FindAction("[Right] PushButton 8", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,6 +790,236 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         }
     }
     public HoistActions @Hoist => new HoistActions(this);
+
+    // Controls
+    private readonly InputActionMap m_Controls;
+    private List<IControlsActions> m_ControlsActionsCallbackInterfaces = new List<IControlsActions>();
+    private readonly InputAction m_Controls_Joystick1;
+    private readonly InputAction m_Controls_Joystick2;
+    private readonly InputAction m_Controls_Rotary1;
+    private readonly InputAction m_Controls_Rotary2;
+    private readonly InputAction m_Controls_Rotary3;
+    private readonly InputAction m_Controls_Rotary4;
+    private readonly InputAction m_Controls_LeftPushButton1;
+    private readonly InputAction m_Controls_LeftPushButton2;
+    private readonly InputAction m_Controls_LeftPushButton3;
+    private readonly InputAction m_Controls_LeftPushButton4;
+    private readonly InputAction m_Controls_DownShift;
+    private readonly InputAction m_Controls_UpShift;
+    private readonly InputAction m_Controls_JS1B1;
+    private readonly InputAction m_Controls_JS1B2;
+    private readonly InputAction m_Controls_JS2B1;
+    private readonly InputAction m_Controls_JS2B2;
+    private readonly InputAction m_Controls_RightPushButton1;
+    private readonly InputAction m_Controls_RightPushButton2;
+    private readonly InputAction m_Controls_RightPushButton3;
+    private readonly InputAction m_Controls_RightPushButton4;
+    private readonly InputAction m_Controls_RightPushButton5;
+    private readonly InputAction m_Controls_RightPushButton6;
+    private readonly InputAction m_Controls_RightPushButton7;
+    private readonly InputAction m_Controls_RightPushButton8;
+    public struct ControlsActions
+    {
+        private @ControllerSetup m_Wrapper;
+        public ControlsActions(@ControllerSetup wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Joystick1 => m_Wrapper.m_Controls_Joystick1;
+        public InputAction @Joystick2 => m_Wrapper.m_Controls_Joystick2;
+        public InputAction @Rotary1 => m_Wrapper.m_Controls_Rotary1;
+        public InputAction @Rotary2 => m_Wrapper.m_Controls_Rotary2;
+        public InputAction @Rotary3 => m_Wrapper.m_Controls_Rotary3;
+        public InputAction @Rotary4 => m_Wrapper.m_Controls_Rotary4;
+        public InputAction @LeftPushButton1 => m_Wrapper.m_Controls_LeftPushButton1;
+        public InputAction @LeftPushButton2 => m_Wrapper.m_Controls_LeftPushButton2;
+        public InputAction @LeftPushButton3 => m_Wrapper.m_Controls_LeftPushButton3;
+        public InputAction @LeftPushButton4 => m_Wrapper.m_Controls_LeftPushButton4;
+        public InputAction @DownShift => m_Wrapper.m_Controls_DownShift;
+        public InputAction @UpShift => m_Wrapper.m_Controls_UpShift;
+        public InputAction @JS1B1 => m_Wrapper.m_Controls_JS1B1;
+        public InputAction @JS1B2 => m_Wrapper.m_Controls_JS1B2;
+        public InputAction @JS2B1 => m_Wrapper.m_Controls_JS2B1;
+        public InputAction @JS2B2 => m_Wrapper.m_Controls_JS2B2;
+        public InputAction @RightPushButton1 => m_Wrapper.m_Controls_RightPushButton1;
+        public InputAction @RightPushButton2 => m_Wrapper.m_Controls_RightPushButton2;
+        public InputAction @RightPushButton3 => m_Wrapper.m_Controls_RightPushButton3;
+        public InputAction @RightPushButton4 => m_Wrapper.m_Controls_RightPushButton4;
+        public InputAction @RightPushButton5 => m_Wrapper.m_Controls_RightPushButton5;
+        public InputAction @RightPushButton6 => m_Wrapper.m_Controls_RightPushButton6;
+        public InputAction @RightPushButton7 => m_Wrapper.m_Controls_RightPushButton7;
+        public InputAction @RightPushButton8 => m_Wrapper.m_Controls_RightPushButton8;
+        public InputActionMap Get() { return m_Wrapper.m_Controls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ControlsActionsCallbackInterfaces.Add(instance);
+            @Joystick1.started += instance.OnJoystick1;
+            @Joystick1.performed += instance.OnJoystick1;
+            @Joystick1.canceled += instance.OnJoystick1;
+            @Joystick2.started += instance.OnJoystick2;
+            @Joystick2.performed += instance.OnJoystick2;
+            @Joystick2.canceled += instance.OnJoystick2;
+            @Rotary1.started += instance.OnRotary1;
+            @Rotary1.performed += instance.OnRotary1;
+            @Rotary1.canceled += instance.OnRotary1;
+            @Rotary2.started += instance.OnRotary2;
+            @Rotary2.performed += instance.OnRotary2;
+            @Rotary2.canceled += instance.OnRotary2;
+            @Rotary3.started += instance.OnRotary3;
+            @Rotary3.performed += instance.OnRotary3;
+            @Rotary3.canceled += instance.OnRotary3;
+            @Rotary4.started += instance.OnRotary4;
+            @Rotary4.performed += instance.OnRotary4;
+            @Rotary4.canceled += instance.OnRotary4;
+            @LeftPushButton1.started += instance.OnLeftPushButton1;
+            @LeftPushButton1.performed += instance.OnLeftPushButton1;
+            @LeftPushButton1.canceled += instance.OnLeftPushButton1;
+            @LeftPushButton2.started += instance.OnLeftPushButton2;
+            @LeftPushButton2.performed += instance.OnLeftPushButton2;
+            @LeftPushButton2.canceled += instance.OnLeftPushButton2;
+            @LeftPushButton3.started += instance.OnLeftPushButton3;
+            @LeftPushButton3.performed += instance.OnLeftPushButton3;
+            @LeftPushButton3.canceled += instance.OnLeftPushButton3;
+            @LeftPushButton4.started += instance.OnLeftPushButton4;
+            @LeftPushButton4.performed += instance.OnLeftPushButton4;
+            @LeftPushButton4.canceled += instance.OnLeftPushButton4;
+            @DownShift.started += instance.OnDownShift;
+            @DownShift.performed += instance.OnDownShift;
+            @DownShift.canceled += instance.OnDownShift;
+            @UpShift.started += instance.OnUpShift;
+            @UpShift.performed += instance.OnUpShift;
+            @UpShift.canceled += instance.OnUpShift;
+            @JS1B1.started += instance.OnJS1B1;
+            @JS1B1.performed += instance.OnJS1B1;
+            @JS1B1.canceled += instance.OnJS1B1;
+            @JS1B2.started += instance.OnJS1B2;
+            @JS1B2.performed += instance.OnJS1B2;
+            @JS1B2.canceled += instance.OnJS1B2;
+            @JS2B1.started += instance.OnJS2B1;
+            @JS2B1.performed += instance.OnJS2B1;
+            @JS2B1.canceled += instance.OnJS2B1;
+            @JS2B2.started += instance.OnJS2B2;
+            @JS2B2.performed += instance.OnJS2B2;
+            @JS2B2.canceled += instance.OnJS2B2;
+            @RightPushButton1.started += instance.OnRightPushButton1;
+            @RightPushButton1.performed += instance.OnRightPushButton1;
+            @RightPushButton1.canceled += instance.OnRightPushButton1;
+            @RightPushButton2.started += instance.OnRightPushButton2;
+            @RightPushButton2.performed += instance.OnRightPushButton2;
+            @RightPushButton2.canceled += instance.OnRightPushButton2;
+            @RightPushButton3.started += instance.OnRightPushButton3;
+            @RightPushButton3.performed += instance.OnRightPushButton3;
+            @RightPushButton3.canceled += instance.OnRightPushButton3;
+            @RightPushButton4.started += instance.OnRightPushButton4;
+            @RightPushButton4.performed += instance.OnRightPushButton4;
+            @RightPushButton4.canceled += instance.OnRightPushButton4;
+            @RightPushButton5.started += instance.OnRightPushButton5;
+            @RightPushButton5.performed += instance.OnRightPushButton5;
+            @RightPushButton5.canceled += instance.OnRightPushButton5;
+            @RightPushButton6.started += instance.OnRightPushButton6;
+            @RightPushButton6.performed += instance.OnRightPushButton6;
+            @RightPushButton6.canceled += instance.OnRightPushButton6;
+            @RightPushButton7.started += instance.OnRightPushButton7;
+            @RightPushButton7.performed += instance.OnRightPushButton7;
+            @RightPushButton7.canceled += instance.OnRightPushButton7;
+            @RightPushButton8.started += instance.OnRightPushButton8;
+            @RightPushButton8.performed += instance.OnRightPushButton8;
+            @RightPushButton8.canceled += instance.OnRightPushButton8;
+        }
+
+        private void UnregisterCallbacks(IControlsActions instance)
+        {
+            @Joystick1.started -= instance.OnJoystick1;
+            @Joystick1.performed -= instance.OnJoystick1;
+            @Joystick1.canceled -= instance.OnJoystick1;
+            @Joystick2.started -= instance.OnJoystick2;
+            @Joystick2.performed -= instance.OnJoystick2;
+            @Joystick2.canceled -= instance.OnJoystick2;
+            @Rotary1.started -= instance.OnRotary1;
+            @Rotary1.performed -= instance.OnRotary1;
+            @Rotary1.canceled -= instance.OnRotary1;
+            @Rotary2.started -= instance.OnRotary2;
+            @Rotary2.performed -= instance.OnRotary2;
+            @Rotary2.canceled -= instance.OnRotary2;
+            @Rotary3.started -= instance.OnRotary3;
+            @Rotary3.performed -= instance.OnRotary3;
+            @Rotary3.canceled -= instance.OnRotary3;
+            @Rotary4.started -= instance.OnRotary4;
+            @Rotary4.performed -= instance.OnRotary4;
+            @Rotary4.canceled -= instance.OnRotary4;
+            @LeftPushButton1.started -= instance.OnLeftPushButton1;
+            @LeftPushButton1.performed -= instance.OnLeftPushButton1;
+            @LeftPushButton1.canceled -= instance.OnLeftPushButton1;
+            @LeftPushButton2.started -= instance.OnLeftPushButton2;
+            @LeftPushButton2.performed -= instance.OnLeftPushButton2;
+            @LeftPushButton2.canceled -= instance.OnLeftPushButton2;
+            @LeftPushButton3.started -= instance.OnLeftPushButton3;
+            @LeftPushButton3.performed -= instance.OnLeftPushButton3;
+            @LeftPushButton3.canceled -= instance.OnLeftPushButton3;
+            @LeftPushButton4.started -= instance.OnLeftPushButton4;
+            @LeftPushButton4.performed -= instance.OnLeftPushButton4;
+            @LeftPushButton4.canceled -= instance.OnLeftPushButton4;
+            @DownShift.started -= instance.OnDownShift;
+            @DownShift.performed -= instance.OnDownShift;
+            @DownShift.canceled -= instance.OnDownShift;
+            @UpShift.started -= instance.OnUpShift;
+            @UpShift.performed -= instance.OnUpShift;
+            @UpShift.canceled -= instance.OnUpShift;
+            @JS1B1.started -= instance.OnJS1B1;
+            @JS1B1.performed -= instance.OnJS1B1;
+            @JS1B1.canceled -= instance.OnJS1B1;
+            @JS1B2.started -= instance.OnJS1B2;
+            @JS1B2.performed -= instance.OnJS1B2;
+            @JS1B2.canceled -= instance.OnJS1B2;
+            @JS2B1.started -= instance.OnJS2B1;
+            @JS2B1.performed -= instance.OnJS2B1;
+            @JS2B1.canceled -= instance.OnJS2B1;
+            @JS2B2.started -= instance.OnJS2B2;
+            @JS2B2.performed -= instance.OnJS2B2;
+            @JS2B2.canceled -= instance.OnJS2B2;
+            @RightPushButton1.started -= instance.OnRightPushButton1;
+            @RightPushButton1.performed -= instance.OnRightPushButton1;
+            @RightPushButton1.canceled -= instance.OnRightPushButton1;
+            @RightPushButton2.started -= instance.OnRightPushButton2;
+            @RightPushButton2.performed -= instance.OnRightPushButton2;
+            @RightPushButton2.canceled -= instance.OnRightPushButton2;
+            @RightPushButton3.started -= instance.OnRightPushButton3;
+            @RightPushButton3.performed -= instance.OnRightPushButton3;
+            @RightPushButton3.canceled -= instance.OnRightPushButton3;
+            @RightPushButton4.started -= instance.OnRightPushButton4;
+            @RightPushButton4.performed -= instance.OnRightPushButton4;
+            @RightPushButton4.canceled -= instance.OnRightPushButton4;
+            @RightPushButton5.started -= instance.OnRightPushButton5;
+            @RightPushButton5.performed -= instance.OnRightPushButton5;
+            @RightPushButton5.canceled -= instance.OnRightPushButton5;
+            @RightPushButton6.started -= instance.OnRightPushButton6;
+            @RightPushButton6.performed -= instance.OnRightPushButton6;
+            @RightPushButton6.canceled -= instance.OnRightPushButton6;
+            @RightPushButton7.started -= instance.OnRightPushButton7;
+            @RightPushButton7.performed -= instance.OnRightPushButton7;
+            @RightPushButton7.canceled -= instance.OnRightPushButton7;
+            @RightPushButton8.started -= instance.OnRightPushButton8;
+            @RightPushButton8.performed -= instance.OnRightPushButton8;
+            @RightPushButton8.canceled -= instance.OnRightPushButton8;
+        }
+
+        public void RemoveCallbacks(IControlsActions instance)
+        {
+            if (m_Wrapper.m_ControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ControlsActions @Controls => new ControlsActions(this);
     public interface IHoistActions
     {
         void OnCross(InputAction.CallbackContext context);
@@ -283,5 +1027,32 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         void OnSwitcher(InputAction.CallbackContext context);
         void OnMalfunction(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+    }
+    public interface IControlsActions
+    {
+        void OnJoystick1(InputAction.CallbackContext context);
+        void OnJoystick2(InputAction.CallbackContext context);
+        void OnRotary1(InputAction.CallbackContext context);
+        void OnRotary2(InputAction.CallbackContext context);
+        void OnRotary3(InputAction.CallbackContext context);
+        void OnRotary4(InputAction.CallbackContext context);
+        void OnLeftPushButton1(InputAction.CallbackContext context);
+        void OnLeftPushButton2(InputAction.CallbackContext context);
+        void OnLeftPushButton3(InputAction.CallbackContext context);
+        void OnLeftPushButton4(InputAction.CallbackContext context);
+        void OnDownShift(InputAction.CallbackContext context);
+        void OnUpShift(InputAction.CallbackContext context);
+        void OnJS1B1(InputAction.CallbackContext context);
+        void OnJS1B2(InputAction.CallbackContext context);
+        void OnJS2B1(InputAction.CallbackContext context);
+        void OnJS2B2(InputAction.CallbackContext context);
+        void OnRightPushButton1(InputAction.CallbackContext context);
+        void OnRightPushButton2(InputAction.CallbackContext context);
+        void OnRightPushButton3(InputAction.CallbackContext context);
+        void OnRightPushButton4(InputAction.CallbackContext context);
+        void OnRightPushButton5(InputAction.CallbackContext context);
+        void OnRightPushButton6(InputAction.CallbackContext context);
+        void OnRightPushButton7(InputAction.CallbackContext context);
+        void OnRightPushButton8(InputAction.CallbackContext context);
     }
 }
