@@ -7,7 +7,10 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     //TODO: manipulate vlaues of push buttons, joystick and output result
-
+    [Header("Joysticks")]
+    public Joystick RightJoystick = new Joystick("Right Joystick");
+    public Joystick LeftJoystick = new Joystick("Left Joystick");
+    
     [Header("Rotaries")]
     public Rotary Rotary1 = new Rotary(value: 0, maxValue: 6, minValue: 0, name: "One"); 
     public Rotary Rotary2 = new Rotary(value: 0, maxValue: 2, minValue: 0, name: "Two"); 
