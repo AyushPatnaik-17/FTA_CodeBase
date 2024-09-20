@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
 [Serializable]
 public class Rotary
 {
@@ -43,14 +45,14 @@ public class PushButton
 }
 
 [Serializable]
-public class JoyStick
+public class Joystick
 {
     public String Name;
     public PushButton Button1;
     public PushButton Button2;
     public int XVal,YVal;
 
-    public JoyStick(string name)
+    public Joystick(string name)
     {
         Name = name;
         Button1 = new PushButton(1,0);
@@ -62,5 +64,35 @@ public class JoyStick
 }
 public class ArmRest
 {
+    private string _outputString = "";
+    public Joystick Joystick;
+    public List<PushButton> PushButtons;
 
+    public List<Rotary> Rotaries;
+
+    public ArmRest(Joystick joystick, List<PushButton> pushButtons, List<Rotary> rotaries = null)
+    {
+        Joystick = joystick;
+        PushButtons = pushButtons;
+        Rotaries = rotaries;
+    }
+
+    public string GetOutputString()
+    {
+        string joystickAxisVal = Joystick.XVal.ToString() + Joystick.YVal.ToString();
+        string pushButtonVal = "";
+        foreach(var button in PushButtons)
+        {
+            pushButtonVal += button.Value.ToString();
+        }
+        _outputString = joystickAxisVal + pushButtonVal;
+
+        if (Rotaries == null)
+            return _outputString;
+        foreach(var rotary in Rotaries)
+        {
+            _outputString += rotary.Value;
+        }
+        return _outputString;
+    }
 }

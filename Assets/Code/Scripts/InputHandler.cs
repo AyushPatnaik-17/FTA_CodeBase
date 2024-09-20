@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    //TODO: Define all the input actions.
-    // Create an int array 
-    public const string DEFAULT_INPUT = "550000000000000055000000";
-    public static char[] InputValues = DEFAULT_INPUT.ToCharArray();
+    //TODO: manipulate vlaues of push buttons, joystick and output result
 
     [Header("Rotaries")]
     public Rotary Rotary1 = new Rotary(value: 0, maxValue: 6, minValue: 0, name: "One"); 
@@ -18,7 +15,7 @@ public class InputHandler : MonoBehaviour
     public Rotary Rotary4 = new Rotary(value: 0, maxValue: 3, minValue: 0, name: "Four"); 
     public Rotary ActiveRotary;
 
-    [Header("Press Buttons")]
+    [Header("Push Buttons")]
     public List<PushButton> RightPushButtons = new();
     public List<PushButton> LeftPushButtons = new();
 
@@ -26,6 +23,11 @@ public class InputHandler : MonoBehaviour
     private ControllerSetup _controllerSetup;
     private InputAction _rotaryBtn1, _rotaryBtn2, _rotaryBtn3, _rotaryBtn4;
     private InputAction _upShift,_downshift;
+    private InputAction RPb1, RPb2,RPb3,RPb4,RPb5,RPb6,RPb7,RPb8; 
+    private InputAction LPb1, LPb2,LPb3,LPb4; 
+
+    private List<InputAction> _rightPushBinds = new();
+    private List<InputAction> _leftPushBinds = new();
     #endregion
 
     private int ConvertJoystickValue(float axisValue)
@@ -54,6 +56,45 @@ public class InputHandler : MonoBehaviour
     {
         _controllerSetup = new ControllerSetup();
         ControllerSetup.ControlsActions controls = _controllerSetup.Controls;
+
+        SetupRotaries(controls);
+        SetupPushButtons(controls);
+    }
+
+    private void SetupPushButtons(ControllerSetup.ControlsActions controls)
+    {
+        RPb1 = controls.RightPushButton1;
+        RPb2 = controls.RightPushButton2;
+        RPb3 = controls.RightPushButton3;
+        RPb4 = controls.RightPushButton4;
+        RPb5 = controls.RightPushButton5;
+        RPb6 = controls.RightPushButton6;
+        RPb7 = controls.RightPushButton7;
+        RPb8 = controls.RightPushButton8;
+
+        LPb1 = controls.LeftPushButton1;
+        LPb2 = controls.LeftPushButton2;
+        LPb3 = controls.LeftPushButton3;
+        LPb4 = controls.LeftPushButton4;
+
+        _rightPushBinds = new List<InputAction>
+        {
+            RPb1, RPb2, RPb3, RPb4, RPb5, RPb6, RPb7, RPb8
+        };
+
+        _leftPushBinds = new List<InputAction>
+        {
+            LPb1, LPb2, LPb3, LPb4
+        };
+
+        for(int i = 0; i < _rightPushBinds.Count; i++)
+        {
+
+        }
+    }
+
+    private void SetupRotaries(ControllerSetup.ControlsActions controls)
+    {
         SetActiveRotary(Rotary1);
 
         _rotaryBtn1 = controls.Rotary1;
@@ -79,7 +120,6 @@ public class InputHandler : MonoBehaviour
             ActiveRotary.RotateDown();
         };
     }
-
     private void SetActiveRotary(Rotary rotary)
     {
         ActiveRotary = rotary;
