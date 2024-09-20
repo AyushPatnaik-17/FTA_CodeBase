@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     //TODO: manipulate vlaues of push buttons, joystick and output result
+    [Header("ArmRests")]
+    public ArmRest RightArmRest;
+    public ArmRest LeftArmRest;
+
     [Header("Joysticks")]
     public Joystick RightJoystick = new Joystick("Right Joystick");
     public Joystick LeftJoystick = new Joystick("Left Joystick");
@@ -31,6 +35,7 @@ public class InputHandler : MonoBehaviour
 
     private List<InputAction> _rightPushBinds = new();
     private List<InputAction> _leftPushBinds = new();
+    private InputAction _js1B1, _js1B2, _js2B1, _js2B2;
     #endregion
 
     private int ConvertJoystickValue(float axisValue)
@@ -92,7 +97,36 @@ public class InputHandler : MonoBehaviour
 
         for(int i = 0; i < _rightPushBinds.Count; i++)
         {
+            PushButton button = new PushButton(i+1, 0);
+            RightPushButtons.Add(button);
 
+            _rightPushBinds[i].performed += ctx => 
+            {
+                Debug.Log("Pushed");
+                button.Value = 1;
+            };
+            _rightPushBinds[i].canceled += ctx => 
+            {
+                Debug.Log("Released");
+                button.Value = 0;
+            };
+        }
+
+        for(int i = 0; i < _leftPushBinds.Count; i++)
+        {
+            PushButton button = new PushButton(i+1, 0);
+            LeftPushButtons.Add(button);
+
+            _leftPushBinds[i].performed += ctx => 
+            {
+                Debug.Log("Left Button Pushed");
+                button.Value = 1;
+            };
+            _leftPushBinds[i].canceled += ctx => 
+            {
+                Debug.Log("Left Button Released");
+                button.Value = 0;
+            };
         }
     }
 
