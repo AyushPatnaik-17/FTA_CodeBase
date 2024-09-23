@@ -42,6 +42,11 @@ public class PushButton
         Name = $"Push Button {index}";
         Value = value;
     }
+
+    public void SetValue()
+    {
+        Value = Value == 1 ? 0 : 1;
+    }
 }
 
 [Serializable]
@@ -62,6 +67,7 @@ public class Joystick
     }
 
 }
+[Serializable]
 public class ArmRest
 {
     private string _outputString = "";
@@ -79,20 +85,27 @@ public class ArmRest
 
     public string GetOutputString()
     {
-        string joystickAxisVal = Joystick.XVal.ToString() + Joystick.YVal.ToString();
+        string joystickAxisVal = $"{Joystick.XVal}{Joystick.YVal}";
+        string joysticButtonsVal = $"{Joystick.Button1.Value}{Joystick.Button2.Value}";
         string pushButtonVal = "";
-        foreach(var button in PushButtons)
+        string rotaryVal = "";
+        
+        if (Rotaries == null)
+            goto comeeHere;
+
+        foreach (var rotary in Rotaries)
+        {
+            rotaryVal += rotary.Value;
+        }
+
+        comeeHere:
+        foreach (var button in PushButtons)
         {
             pushButtonVal += button.Value.ToString();
         }
-        _outputString = joystickAxisVal + pushButtonVal;
 
-        if (Rotaries == null)
-            return _outputString;
-        foreach(var rotary in Rotaries)
-        {
-            _outputString += rotary.Value;
-        }
+        _outputString = $"{joystickAxisVal}{joysticButtonsVal}{rotaryVal}{pushButtonVal}";
+        
         return _outputString;
     }
 }

@@ -244,7 +244,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""JS1B1"",
+                    ""name"": ""Joystick1Button1"",
                     ""type"": ""Button"",
                     ""id"": ""be5ab2cb-fff6-4751-8fa0-29f36c358428"",
                     ""expectedControlType"": ""Button"",
@@ -253,7 +253,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""JS1B2"",
+                    ""name"": ""Joystick1Button2"",
                     ""type"": ""Button"",
                     ""id"": ""b622d21f-19df-43fc-9788-c3ec331efaf5"",
                     ""expectedControlType"": ""Button"",
@@ -262,7 +262,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""JS2B1"",
+                    ""name"": ""Joystick2Button1"",
                     ""type"": ""Button"",
                     ""id"": ""d2f299ce-c632-4c94-a07c-997182b0a811"",
                     ""expectedControlType"": ""Button"",
@@ -271,7 +271,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""JS2B2"",
+                    ""name"": ""Joystick2Button2"",
                     ""type"": ""Button"",
                     ""id"": ""27483d3a-bc78-4648-8256-d1f7f4e0b269"",
                     ""expectedControlType"": ""Button"",
@@ -379,7 +379,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2df802ee-a2de-4776-a3b3-3ea83dba47d6"",
                     ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Left] PushButton 1"",
@@ -456,7 +456,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1bb6e82c-3e23-40c1-932d-5adc3b84b0e1"",
                     ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Left] PushButton 2"",
@@ -467,7 +467,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""9b663c45-bdc2-4acb-917f-17f4f6b1a9c4"",
                     ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Left] PushButton 3"",
@@ -478,7 +478,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""c8a228d3-cae8-4294-a4eb-53425661962d"",
                     ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Left] PushButton 4"",
@@ -492,7 +492,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""JS1B1"",
+                    ""action"": ""Joystick1Button1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -503,7 +503,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""JS1B2"",
+                    ""action"": ""Joystick1Button2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -514,7 +514,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""JS2B1"",
+                    ""action"": ""Joystick2Button1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -525,15 +525,15 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""JS2B2"",
+                    ""action"": ""Joystick2Button2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""30b5a81f-ef60-45ff-8488-a55f04377b80"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": ""Hold"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 1"",
@@ -544,7 +544,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""df7b86e3-2537-4526-b4aa-c746e64398e5"",
                     ""path"": ""<Keyboard>/2"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 2"",
@@ -555,7 +555,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""f752902e-b30c-4ccb-8c96-e57585d861f4"",
                     ""path"": ""<Keyboard>/3"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 3"",
@@ -566,7 +566,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""e84c50a6-60f5-4c16-aca7-b8d37ef86a21"",
                     ""path"": ""<Keyboard>/4"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 4"",
@@ -577,7 +577,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""61fc51da-a8ce-46ab-9cff-aec8b8d11472"",
                     ""path"": ""<Keyboard>/5"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 5"",
@@ -588,7 +588,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b012ccfc-f01f-41cc-a763-3861de4c10f9"",
                     ""path"": ""<Keyboard>/6"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 6"",
@@ -599,7 +599,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""fa9ca8cd-ca40-4e7a-8ebf-37db2ef92010"",
                     ""path"": ""<Keyboard>/7"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 7"",
@@ -610,7 +610,7 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5d88909e-cbcf-4762-8ed1-af54bc637e34"",
                     ""path"": ""<Keyboard>/8"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Hold(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""[Right] PushButton 8"",
@@ -643,10 +643,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         m_Controls_LeftPushButton4 = m_Controls.FindAction("[Left] PushButton 4", throwIfNotFound: true);
         m_Controls_DownShift = m_Controls.FindAction("DownShift", throwIfNotFound: true);
         m_Controls_UpShift = m_Controls.FindAction("UpShift", throwIfNotFound: true);
-        m_Controls_JS1B1 = m_Controls.FindAction("JS1B1", throwIfNotFound: true);
-        m_Controls_JS1B2 = m_Controls.FindAction("JS1B2", throwIfNotFound: true);
-        m_Controls_JS2B1 = m_Controls.FindAction("JS2B1", throwIfNotFound: true);
-        m_Controls_JS2B2 = m_Controls.FindAction("JS2B2", throwIfNotFound: true);
+        m_Controls_Joystick1Button1 = m_Controls.FindAction("Joystick1Button1", throwIfNotFound: true);
+        m_Controls_Joystick1Button2 = m_Controls.FindAction("Joystick1Button2", throwIfNotFound: true);
+        m_Controls_Joystick2Button1 = m_Controls.FindAction("Joystick2Button1", throwIfNotFound: true);
+        m_Controls_Joystick2Button2 = m_Controls.FindAction("Joystick2Button2", throwIfNotFound: true);
         m_Controls_RightPushButton1 = m_Controls.FindAction("[Right] PushButton 1", throwIfNotFound: true);
         m_Controls_RightPushButton2 = m_Controls.FindAction("[Right] PushButton 2", throwIfNotFound: true);
         m_Controls_RightPushButton3 = m_Controls.FindAction("[Right] PushButton 3", throwIfNotFound: true);
@@ -806,10 +806,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
     private readonly InputAction m_Controls_LeftPushButton4;
     private readonly InputAction m_Controls_DownShift;
     private readonly InputAction m_Controls_UpShift;
-    private readonly InputAction m_Controls_JS1B1;
-    private readonly InputAction m_Controls_JS1B2;
-    private readonly InputAction m_Controls_JS2B1;
-    private readonly InputAction m_Controls_JS2B2;
+    private readonly InputAction m_Controls_Joystick1Button1;
+    private readonly InputAction m_Controls_Joystick1Button2;
+    private readonly InputAction m_Controls_Joystick2Button1;
+    private readonly InputAction m_Controls_Joystick2Button2;
     private readonly InputAction m_Controls_RightPushButton1;
     private readonly InputAction m_Controls_RightPushButton2;
     private readonly InputAction m_Controls_RightPushButton3;
@@ -834,10 +834,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         public InputAction @LeftPushButton4 => m_Wrapper.m_Controls_LeftPushButton4;
         public InputAction @DownShift => m_Wrapper.m_Controls_DownShift;
         public InputAction @UpShift => m_Wrapper.m_Controls_UpShift;
-        public InputAction @JS1B1 => m_Wrapper.m_Controls_JS1B1;
-        public InputAction @JS1B2 => m_Wrapper.m_Controls_JS1B2;
-        public InputAction @JS2B1 => m_Wrapper.m_Controls_JS2B1;
-        public InputAction @JS2B2 => m_Wrapper.m_Controls_JS2B2;
+        public InputAction @Joystick1Button1 => m_Wrapper.m_Controls_Joystick1Button1;
+        public InputAction @Joystick1Button2 => m_Wrapper.m_Controls_Joystick1Button2;
+        public InputAction @Joystick2Button1 => m_Wrapper.m_Controls_Joystick2Button1;
+        public InputAction @Joystick2Button2 => m_Wrapper.m_Controls_Joystick2Button2;
         public InputAction @RightPushButton1 => m_Wrapper.m_Controls_RightPushButton1;
         public InputAction @RightPushButton2 => m_Wrapper.m_Controls_RightPushButton2;
         public InputAction @RightPushButton3 => m_Wrapper.m_Controls_RightPushButton3;
@@ -891,18 +891,18 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
             @UpShift.started += instance.OnUpShift;
             @UpShift.performed += instance.OnUpShift;
             @UpShift.canceled += instance.OnUpShift;
-            @JS1B1.started += instance.OnJS1B1;
-            @JS1B1.performed += instance.OnJS1B1;
-            @JS1B1.canceled += instance.OnJS1B1;
-            @JS1B2.started += instance.OnJS1B2;
-            @JS1B2.performed += instance.OnJS1B2;
-            @JS1B2.canceled += instance.OnJS1B2;
-            @JS2B1.started += instance.OnJS2B1;
-            @JS2B1.performed += instance.OnJS2B1;
-            @JS2B1.canceled += instance.OnJS2B1;
-            @JS2B2.started += instance.OnJS2B2;
-            @JS2B2.performed += instance.OnJS2B2;
-            @JS2B2.canceled += instance.OnJS2B2;
+            @Joystick1Button1.started += instance.OnJoystick1Button1;
+            @Joystick1Button1.performed += instance.OnJoystick1Button1;
+            @Joystick1Button1.canceled += instance.OnJoystick1Button1;
+            @Joystick1Button2.started += instance.OnJoystick1Button2;
+            @Joystick1Button2.performed += instance.OnJoystick1Button2;
+            @Joystick1Button2.canceled += instance.OnJoystick1Button2;
+            @Joystick2Button1.started += instance.OnJoystick2Button1;
+            @Joystick2Button1.performed += instance.OnJoystick2Button1;
+            @Joystick2Button1.canceled += instance.OnJoystick2Button1;
+            @Joystick2Button2.started += instance.OnJoystick2Button2;
+            @Joystick2Button2.performed += instance.OnJoystick2Button2;
+            @Joystick2Button2.canceled += instance.OnJoystick2Button2;
             @RightPushButton1.started += instance.OnRightPushButton1;
             @RightPushButton1.performed += instance.OnRightPushButton1;
             @RightPushButton1.canceled += instance.OnRightPushButton1;
@@ -967,18 +967,18 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
             @UpShift.started -= instance.OnUpShift;
             @UpShift.performed -= instance.OnUpShift;
             @UpShift.canceled -= instance.OnUpShift;
-            @JS1B1.started -= instance.OnJS1B1;
-            @JS1B1.performed -= instance.OnJS1B1;
-            @JS1B1.canceled -= instance.OnJS1B1;
-            @JS1B2.started -= instance.OnJS1B2;
-            @JS1B2.performed -= instance.OnJS1B2;
-            @JS1B2.canceled -= instance.OnJS1B2;
-            @JS2B1.started -= instance.OnJS2B1;
-            @JS2B1.performed -= instance.OnJS2B1;
-            @JS2B1.canceled -= instance.OnJS2B1;
-            @JS2B2.started -= instance.OnJS2B2;
-            @JS2B2.performed -= instance.OnJS2B2;
-            @JS2B2.canceled -= instance.OnJS2B2;
+            @Joystick1Button1.started -= instance.OnJoystick1Button1;
+            @Joystick1Button1.performed -= instance.OnJoystick1Button1;
+            @Joystick1Button1.canceled -= instance.OnJoystick1Button1;
+            @Joystick1Button2.started -= instance.OnJoystick1Button2;
+            @Joystick1Button2.performed -= instance.OnJoystick1Button2;
+            @Joystick1Button2.canceled -= instance.OnJoystick1Button2;
+            @Joystick2Button1.started -= instance.OnJoystick2Button1;
+            @Joystick2Button1.performed -= instance.OnJoystick2Button1;
+            @Joystick2Button1.canceled -= instance.OnJoystick2Button1;
+            @Joystick2Button2.started -= instance.OnJoystick2Button2;
+            @Joystick2Button2.performed -= instance.OnJoystick2Button2;
+            @Joystick2Button2.canceled -= instance.OnJoystick2Button2;
             @RightPushButton1.started -= instance.OnRightPushButton1;
             @RightPushButton1.performed -= instance.OnRightPushButton1;
             @RightPushButton1.canceled -= instance.OnRightPushButton1;
@@ -1042,10 +1042,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         void OnLeftPushButton4(InputAction.CallbackContext context);
         void OnDownShift(InputAction.CallbackContext context);
         void OnUpShift(InputAction.CallbackContext context);
-        void OnJS1B1(InputAction.CallbackContext context);
-        void OnJS1B2(InputAction.CallbackContext context);
-        void OnJS2B1(InputAction.CallbackContext context);
-        void OnJS2B2(InputAction.CallbackContext context);
+        void OnJoystick1Button1(InputAction.CallbackContext context);
+        void OnJoystick1Button2(InputAction.CallbackContext context);
+        void OnJoystick2Button1(InputAction.CallbackContext context);
+        void OnJoystick2Button2(InputAction.CallbackContext context);
         void OnRightPushButton1(InputAction.CallbackContext context);
         void OnRightPushButton2(InputAction.CallbackContext context);
         void OnRightPushButton3(InputAction.CallbackContext context);

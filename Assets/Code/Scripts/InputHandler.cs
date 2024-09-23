@@ -35,7 +35,9 @@ public class InputHandler : MonoBehaviour
 
     private List<InputAction> _rightPushBinds = new();
     private List<InputAction> _leftPushBinds = new();
-    private InputAction _js1B1, _js1B2, _js2B1, _js2B2;
+    private InputAction _joystick1Button1, _joystick1Button2, 
+                        _joystick2Button1, _joystick2Button2; 
+    private InputAction _rightStick, _leftStick;
     #endregion
 
     private int ConvertJoystickValue(float axisValue)
@@ -67,6 +69,60 @@ public class InputHandler : MonoBehaviour
 
         SetupRotaries(controls);
         SetupPushButtons(controls);
+        SetupJoysticks(controls);
+
+        RightArmRest = new ArmRest(RightJoystick, RightPushButtons, new List<Rotary>() { Rotary1, Rotary2, Rotary3, Rotary4 });
+        LeftArmRest = new ArmRest(LeftJoystick, LeftPushButtons);
+    }
+
+    private void SetupJoysticks(ControllerSetup.ControlsActions controls)
+    {
+        RightJoystick = new Joystick("Right Joystick");
+        LeftJoystick = new Joystick("Left Joystick");
+
+        _rightStick = controls.Joystick1;
+        _leftStick = controls.Joystick2;
+
+        _joystick1Button1 = controls.Joystick1Button1;
+        _joystick1Button2 = controls.Joystick1Button2;
+        _joystick2Button1 = controls.Joystick2Button1;
+        _joystick2Button2 = controls.Joystick2Button2;
+
+        _rightStick.performed += ctx =>
+        {
+            Vector2 input = ctx.ReadValue<Vector2>();
+            RightJoystick.XVal = ConvertJoystickValue(input.x);
+            RightJoystick.YVal = ConvertJoystickValue(input.y);
+        };
+        _leftStick.performed += ctx =>
+        {
+            Vector2 input = ctx.ReadValue<Vector2>();
+            LeftJoystick.XVal = ConvertJoystickValue(input.x);
+            LeftJoystick.YVal = ConvertJoystickValue(input.y);
+        };
+
+        _joystick1Button1.performed += ctx =>
+        {
+            "RB1".Print();
+            RightJoystick.Button1.SetValue();
+        };
+        _joystick1Button2.performed += ctx =>
+        {
+            "RB2".Print();
+            RightJoystick.Button2.SetValue();
+        };
+        _joystick2Button1.performed += ctx =>
+        {
+            "LB1".Print();
+            LeftJoystick.Button1.SetValue();
+        };
+        _joystick2Button2.performed += ctx =>
+        {
+            "LB2".Print();
+            LeftJoystick.Button2.SetValue();
+        };
+
+
     }
 
     private void SetupPushButtons(ControllerSetup.ControlsActions controls)
@@ -97,32 +153,34 @@ public class InputHandler : MonoBehaviour
 
         for(int i = 0; i < _rightPushBinds.Count; i++)
         {
-            PushButton button = new PushButton(i+1, 0);
+            int index = i;
+            PushButton button = new PushButton(index+1, 0);
             RightPushButtons.Add(button);
 
-            _rightPushBinds[i].performed += ctx => 
+            _rightPushBinds[index].performed += ctx => 
             {
-                Debug.Log("Pushed");
+                Debug.Log("Right Pushed");
                 button.Value = 1;
             };
-            _rightPushBinds[i].canceled += ctx => 
+            _rightPushBinds[index].canceled += ctx => 
             {
-                Debug.Log("Released");
+                Debug.Log("Right Released");
                 button.Value = 0;
             };
         }
 
         for(int i = 0; i < _leftPushBinds.Count; i++)
         {
-            PushButton button = new PushButton(i+1, 0);
+            int index = i;
+            PushButton button = new PushButton(index+1, 0);
             LeftPushButtons.Add(button);
 
-            _leftPushBinds[i].performed += ctx => 
+            _leftPushBinds[index].performed += ctx => 
             {
                 Debug.Log("Left Button Pushed");
                 button.Value = 1;
             };
-            _leftPushBinds[i].canceled += ctx => 
+            _leftPushBinds[index].canceled += ctx => 
             {
                 Debug.Log("Left Button Released");
                 button.Value = 0;
@@ -162,6 +220,10 @@ public class InputHandler : MonoBehaviour
         ActiveRotary = rotary;
     }
 
+    private void Update()
+    {
+        Debug.Log($"{RightArmRest.GetOutputString()}  {LeftArmRest.GetOutputString()}");
+    }
     public void OnEnable()
     {
         _controllerSetup.Controls.Enable();
