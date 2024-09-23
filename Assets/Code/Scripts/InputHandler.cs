@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using AlligatorUtils;
 using UnityEngine;
@@ -208,18 +207,28 @@ public class InputHandler : MonoBehaviour
         _upShift.performed += ctx => 
         {
            ActiveRotary.RotateUp();
+           UIHandler.Instance.ChangeRotaryCountText(GetActiveRotaryNumber(),ActiveRotary.Value);
         };
 
         _downshift.performed += ctx => 
         {
             ActiveRotary.RotateDown();
+            UIHandler.Instance.ChangeRotaryCountText(GetActiveRotaryNumber(),ActiveRotary.Value);
         };
     }
     private void SetActiveRotary(Rotary rotary)
     {
         ActiveRotary = rotary;
+        UIHandler.Instance.SetRotaryAsActive(GetActiveRotaryNumber());
     }
-
+    private int GetActiveRotaryNumber()
+    {
+        if (ActiveRotary == Rotary1) return 0;
+        if (ActiveRotary == Rotary2) return 1;
+        if (ActiveRotary == Rotary3) return 2;
+        if (ActiveRotary == Rotary4) return 3;
+        return -1;
+    }
     private void Update()
     {
         Debug.Log($"{RightArmRest.GetOutputString()}  {LeftArmRest.GetOutputString()}");
