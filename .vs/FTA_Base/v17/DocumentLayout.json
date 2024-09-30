@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dx\\Project\\FTA_Base\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F97AF35-46D1-1CE0-AA00-C19FB9A9FCD4}|Assembly-CSharp.csproj|d:\\dx\\project\\fta_base\\assets\\obi\\scripts\\common\\utils\\obiutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F97AF35-46D1-1CE0-AA00-C19FB9A9FCD4}|Assembly-CSharp.csproj|solutionrelative:assets\\obi\\scripts\\common\\utils\\obiutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ObiUtils.cs",
+              "DocumentMoniker": "D:\\Dx\\Project\\FTA_Base\\Assets\\Obi\\Scripts\\Common\\Utils\\ObiUtils.cs",
+              "RelativeDocumentMoniker": "Assets\\Obi\\Scripts\\Common\\Utils\\ObiUtils.cs",
+              "ToolTip": "D:\\Dx\\Project\\FTA_Base\\Assets\\Obi\\Scripts\\Common\\Utils\\ObiUtils.cs",
+              "RelativeToolTip": "Assets\\Obi\\Scripts\\Common\\Utils\\ObiUtils.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFIEAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T06:31:53.377Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

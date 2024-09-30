@@ -5,20 +5,73 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    //TODO: manipulate vlaues of push buttons, joystick and output result
     [Header("ArmRests")]
     public ArmRest RightArmRest;
     public ArmRest LeftArmRest;
 
     [Header("Joysticks")]
-    public Joystick RightJoystick = new Joystick("Right Joystick");
+     public Joystick RightJoystick = new Joystick("Right Joystick");
     public Joystick LeftJoystick = new Joystick("Left Joystick");
     
     [Header("Rotaries")]
-    public Rotary Rotary1 = new Rotary(value: 0, maxValue: 6, minValue: 0, name: "One"); 
-    public Rotary Rotary2 = new Rotary(value: 0, maxValue: 2, minValue: 0, name: "Two"); 
-    public Rotary Rotary3 = new Rotary(value: 0, maxValue: 3, minValue: 0, name: "Three"); 
-    public Rotary Rotary4 = new Rotary(value: 0, maxValue: 3, minValue: 0, name: "Four"); 
+    public Rotary Rotary1 = new Rotary
+                            (
+                                value: 0,
+                                maxValue: 6,
+                                minValue: 0,
+                                name: "One",
+                                new string[]
+                                {
+                                    "none",
+                                    "selection anode handling",
+                                    "filling",
+                                    "suction",
+                                    "dust discharge",
+                                    "aux.hoist",
+                                    "flue wall hoist"
+                                }
+                            );
+    public Rotary Rotary2 = new Rotary
+                            (
+                                value: 0, 
+                                maxValue: 2, 
+                                minValue: 0, 
+                                name: "Two",
+                                new string[]
+                                {
+                                    "none",
+                                    "selection all",
+                                    "AH + flue wall hoist"
+                                }
+                            ); 
+    public Rotary Rotary3 = new Rotary
+                            (
+                                value: 0, 
+                                maxValue: 3, 
+                                minValue: 0, 
+                                name: "Three",
+                                new string[]
+                                {
+                                    "none",
+                                    "FPH 1",
+                                    "FPH 2",
+                                    "FPH 1+2"
+                                }
+                            ); 
+    public Rotary Rotary4 = new Rotary
+                            (
+                                value: 0, 
+                                maxValue: 3, 
+                                minValue: 0, 
+                                name: "Four",
+                                new string[]
+                                {
+                                    "none",
+                                    "selection straightener",
+                                    "demolitioner",
+                                    "hook"
+                                }
+                            ); 
     public Rotary ActiveRotary;
 
     [Header("Push Buttons")]
@@ -26,7 +79,7 @@ public class InputHandler : MonoBehaviour
     public List<PushButton> LeftPushButtons = new();
 
     #region Input
-    private ControllerSetup _controllerSetup;
+    public ControllerSetup ControllerSetup;
     private InputAction _rotaryBtn1, _rotaryBtn2, _rotaryBtn3, _rotaryBtn4;
     private InputAction _upShift,_downshift;
     private InputAction RPb1, RPb2,RPb3,RPb4,RPb5,RPb6,RPb7,RPb8; 
@@ -39,32 +92,10 @@ public class InputHandler : MonoBehaviour
     private InputAction _rightStick, _leftStick;
     #endregion
 
-    private int ConvertJoystickValue(float axisValue)
-    {
-        if (axisValue <= -0.75f)
-            return 1;
-        else if (axisValue <= -0.5f)
-            return 2;
-        else if (axisValue <= -0.25f)
-            return 3;
-        else if (axisValue < 0f)
-            return 4;
-        else if (axisValue == 0f)
-            return 5;
-        else if (axisValue < 0.25f)
-            return 6;
-        else if (axisValue < 0.5f)
-            return 7;
-        else if (axisValue < 0.75f)
-            return 8;
-        else
-            return 9;
-    }
-
     private void Awake()
     {
-        _controllerSetup = new ControllerSetup();
-        ControllerSetup.ControlsActions controls = _controllerSetup.Controls;
+        ControllerSetup = new ControllerSetup();
+        ControllerSetup.ControlsActions controls = ControllerSetup.Controls;
 
         SetupRotaries(controls);
         SetupPushButtons(controls);
@@ -72,6 +103,29 @@ public class InputHandler : MonoBehaviour
 
         RightArmRest = new ArmRest(RightJoystick, RightPushButtons, new List<Rotary>() { Rotary1, Rotary2, Rotary3, Rotary4 });
         LeftArmRest = new ArmRest(LeftJoystick, LeftPushButtons);
+    }
+    
+    private void Update()
+    {
+        string text = $"{RightArmRest.GetOutputString()}  {LeftArmRest.GetOutputString()}";
+        UIHandler.Instance.DisplayInputText(text);
+    }
+    public void OnEnable() => ControllerSetup.Controls.Enable();
+    public void OnDisable() => ControllerSetup.Controls.Disable();
+    private int ConvertJoystickValue(float axisValue)
+    {
+        return axisValue switch
+        {
+            >= -1f and < -0.75f => 1,
+            >= -0.75f and < -0.5f => 2,
+            >= -0.5f and < -0.25f => 3,
+            >= -0.25f and < 0f => 4,
+            0f => 5,
+            > 0f and <= 0.25f => 6,
+            > 0.25f and <= 0.5f => 7,
+            > 0.5f and <= 0.75f => 8,
+            _ => 9
+        };
     }
 
     private void SetupJoysticks(ControllerSetup.ControlsActions controls)
@@ -207,19 +261,35 @@ public class InputHandler : MonoBehaviour
         _upShift.performed += ctx => 
         {
            ActiveRotary.RotateUp();
-           UIHandler.Instance.ChangeRotaryCountText(GetActiveRotaryNumber(),ActiveRotary.Value);
+           UIHandler.Instance.ChangeRotaryCountText
+           (
+            GetActiveRotaryNumber(),
+            ActiveRotary.Value,
+            ActiveRotary.SettingDetails[ActiveRotary.Value]
+        );
         };
 
         _downshift.performed += ctx => 
         {
             ActiveRotary.RotateDown();
-            UIHandler.Instance.ChangeRotaryCountText(GetActiveRotaryNumber(),ActiveRotary.Value);
+            UIHandler.Instance.ChangeRotaryCountText
+            (
+                GetActiveRotaryNumber(),
+                ActiveRotary.Value,
+                ActiveRotary.SettingDetails[ActiveRotary.Value]
+            );
         };
     }
     private void SetActiveRotary(Rotary rotary)
     {
         ActiveRotary = rotary;
         UIHandler.Instance.SetRotaryAsActive(GetActiveRotaryNumber());
+        UIHandler.Instance.ChangeRotaryCountText
+        (
+            GetActiveRotaryNumber(),
+            ActiveRotary.Value,
+            ActiveRotary.SettingDetails[ActiveRotary.Value]
+        );
     }
     private int GetActiveRotaryNumber()
     {
@@ -229,16 +299,5 @@ public class InputHandler : MonoBehaviour
         if (ActiveRotary == Rotary4) return 3;
         return -1;
     }
-    private void Update()
-    {
-        Debug.Log($"{RightArmRest.GetOutputString()}  {LeftArmRest.GetOutputString()}");
-    }
-    public void OnEnable()
-    {
-        _controllerSetup.Controls.Enable();
-    }
-    public void OnDisable()
-    {
-        _controllerSetup.Controls.Disable();
-    }
+    
 }

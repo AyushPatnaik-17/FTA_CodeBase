@@ -9,12 +9,15 @@ public class Rotary
     public int MaxValue;
     public int MinValue;
 
-    public Rotary(int value, int maxValue, int minValue, string name)
+    public string[] SettingDetails;
+
+    public Rotary(int value, int maxValue, int minValue, string name, string[] settingsDetails)
     {
         Value = value;
         MaxValue = maxValue;
         MinValue = minValue;
         Name = name;
+        SettingDetails = settingsDetails;
     }
     private void SetValue(int newValue)
     {
@@ -73,9 +76,7 @@ public class ArmRest
     private string _outputString = "";
     public Joystick Joystick;
     public List<PushButton> PushButtons;
-
     public List<Rotary> Rotaries;
-
     public ArmRest(Joystick joystick, List<PushButton> pushButtons, List<Rotary> rotaries = null)
     {
         Joystick = joystick;

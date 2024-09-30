@@ -6,7 +6,6 @@ using System;
 using AYellowpaper.SerializedCollections;
 using System.Linq;
 using AlligatorUtils;
-using System.Collections.Generic;
 
 public enum Direction
 {

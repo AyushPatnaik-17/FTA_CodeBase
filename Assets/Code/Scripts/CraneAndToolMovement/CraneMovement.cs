@@ -21,29 +21,29 @@ public class CraneMovement : MonoBehaviour
 
     private void Update()
     {
-        float horInput = Input.GetAxis("Horizontal");
-        float verInput = Input.GetAxis("Vertical");
-        //horInput.Print("Current Hor input: ");
-        if(horInput > 0)
-            MoveCraneLT(horInput);
-        if(verInput >  0)
-            MoveCraneCT(verInput);
-        // if (Input.GetKey(KeyCode.A))
-        // {
-        //     MoveCraneLT(-1);
-        // }
-        // if (Input.GetKey(KeyCode.D))
-        // {
-        //     MoveCraneLT(1);
-        // }
-        // if (Input.GetKey(KeyCode.W))
-        // {
-        //     MoveCraneCT(1);
-        // }
-        // if (Input.GetKey(KeyCode.S))
-        // {
-        //     MoveCraneCT(-1);
-        // }
+        // float horInput = Input.GetAxis("Horizontal");
+        // float verInput = Input.GetAxis("Vertical");
+        // //horInput.Print("Current Hor input: ");
+        // if(horInput > 0)
+        //     MoveCraneLT(horInput);
+        // if(verInput >  0)
+        //     MoveCraneCT(verInput);
+        if (Input.GetKey(KeyCode.A))
+        {
+            MoveCraneLT(-1);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            MoveCraneLT(1);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            MoveCraneCT(1);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            MoveCraneCT(-1);
+        }
     }
 
     private Vector3 _currentVelocity;
@@ -51,8 +51,8 @@ public class CraneMovement : MonoBehaviour
     {
         // if (Mathf.Abs(input) < 0.3f)
         //     return;
-        "MoveCraneLT called".Print();
-        input.Print("lt input: ");
+        // "MoveCraneLT called".Print();
+        //input.Print("lt input: ");
         // crane.transform.Translate(Vector3.right * ltSpeed * Time.deltaTime * input * multiplier;
         Vector3 targetPos = crane.transform.position + (Vector3.right * ltSpeed * Time.deltaTime * input);
         crane.transform.position = Vector3.SmoothDamp
@@ -67,8 +67,8 @@ public class CraneMovement : MonoBehaviour
     
     public void MoveCraneCT(float input)
     {
-        if (Mathf.Abs(input) < 0.3f)
-            return;
+        // if (Mathf.Abs(input) < 0.3f)
+        //     return;
         cabin.transform.Translate(Vector3.forward * ctSpeed * Time.deltaTime * input * multiplier, Space.Self);
     }
 

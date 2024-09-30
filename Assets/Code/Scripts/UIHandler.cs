@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using AlligatorUtils;
 using AYellowpaper.SerializedCollections;
 using TMPro;
@@ -9,6 +7,8 @@ public class UIHandler : MonoBehaviour
 {
     public GameObject[] RotaryIndicators = new GameObject[4];
     public static UIHandler Instance;
+
+    public TextMeshProUGUI InputText;
 
     private void Awake()
     {
@@ -22,13 +22,13 @@ public class UIHandler : MonoBehaviour
             Destroy(gameObject); 
         }
     }
-    public void ChangeRotaryCountText(int index, int value)
+    public void ChangeRotaryCountText(int index, int value, string description = "none")
     {
         //GameObject fg = RotaryIndicators[index].transform.GetChildWithName("fg").gameObject;
         TextMeshProUGUI countText = RotaryIndicators[index].transform.GetChildWithName("Num").GetComponent<TextMeshProUGUI>();
 
         //fg.SetActive(true);
-        countText.text = value.ToString();
+        countText.text = $"{value}\n<size=30>{description}</size>";
     }
 
     public void SetRotaryAsActive(int index)
@@ -45,8 +45,11 @@ public class UIHandler : MonoBehaviour
             {
                 fg.SetActive(false);
             }
-        }
-        
-        
+        } 
+    }
+
+    public void DisplayInputText(string text)
+    {
+        InputText.text = text;
     }
 }
