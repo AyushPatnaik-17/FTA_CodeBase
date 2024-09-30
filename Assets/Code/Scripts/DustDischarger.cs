@@ -10,7 +10,7 @@ public class DustDischarger : MonoBehaviour
     public Transform Target;
     public Transform Reference;
     public float DistanceThreshold, AlignmentThreshold;
-    public float LerpTime, DischargeTime, DischargeQuantinty;
+    public float LerpTime, DischargeTime, DischargeQuantinty, DischargeRate;
     
     public Button button;
 
@@ -25,6 +25,7 @@ public class DustDischarger : MonoBehaviour
             if (_isDischarging)
             {
                 StartCoroutine(MoveDischarger(100f, 0f));
+                //conver this to async and then start discharging
             }
             else
             {
@@ -45,11 +46,11 @@ public class DustDischarger : MonoBehaviour
             _isDischarging = true;
             StartCoroutine(MoveDischarger(100f, 0f));
         }
-        if(_isDischarging)
-        {
-            _isDischarging = false;
-            StartCoroutine(MoveDischarger(0f, 100f));
-        }
+        // if(_isDischarging)
+        // {
+        //     _isDischarging = false;
+        //     StartCoroutine(MoveDischarger(0f, 100f));
+        // }
     }
 
     private IEnumerator MoveDischarger(float fromPercent, float toPercent)
@@ -62,6 +63,11 @@ public class DustDischarger : MonoBehaviour
             _skinnedMeshRenderer.SetBlendShapeWeight(0, Mathf.Lerp(fromPercent, toPercent, lerpFactor));
             yield return null;
         }
+    }
+
+    private IEnumerator StartDischarging()
+    {
+        yield return null;
     }
 
     bool AreTransformsAligned(Transform a, Transform b)
