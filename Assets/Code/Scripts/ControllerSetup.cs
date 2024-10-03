@@ -618,6 +618,54 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Discharger"",
+            ""id"": ""76c80db8-af1e-446e-8e0b-22ac84741ac1"",
+            ""actions"": [
+                {
+                    ""name"": ""Joystick 1"",
+                    ""type"": ""Value"",
+                    ""id"": ""39624954-2cdc-4cef-8e37-3ed26475769f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Joystick 2"",
+                    ""type"": ""Value"",
+                    ""id"": ""90e6c3ed-d9dc-4639-8a22-b192167f0649"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3994e858-dc75-41a1-8e5f-151637d5f174"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Joystick 1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6286aeb-7dd7-4eb6-a8e4-37d1a2b7e88f"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Joystick 2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -655,6 +703,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         m_Controls_RightPushButton6 = m_Controls.FindAction("[Right] PushButton 6", throwIfNotFound: true);
         m_Controls_RightPushButton7 = m_Controls.FindAction("[Right] PushButton 7", throwIfNotFound: true);
         m_Controls_RightPushButton8 = m_Controls.FindAction("[Right] PushButton 8", throwIfNotFound: true);
+        // Discharger
+        m_Discharger = asset.FindActionMap("Discharger", throwIfNotFound: true);
+        m_Discharger_Joystick1 = m_Discharger.FindAction("Joystick 1", throwIfNotFound: true);
+        m_Discharger_Joystick2 = m_Discharger.FindAction("Joystick 2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1020,6 +1072,60 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         }
     }
     public ControlsActions @Controls => new ControlsActions(this);
+
+    // Discharger
+    private readonly InputActionMap m_Discharger;
+    private List<IDischargerActions> m_DischargerActionsCallbackInterfaces = new List<IDischargerActions>();
+    private readonly InputAction m_Discharger_Joystick1;
+    private readonly InputAction m_Discharger_Joystick2;
+    public struct DischargerActions
+    {
+        private @ControllerSetup m_Wrapper;
+        public DischargerActions(@ControllerSetup wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Joystick1 => m_Wrapper.m_Discharger_Joystick1;
+        public InputAction @Joystick2 => m_Wrapper.m_Discharger_Joystick2;
+        public InputActionMap Get() { return m_Wrapper.m_Discharger; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DischargerActions set) { return set.Get(); }
+        public void AddCallbacks(IDischargerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DischargerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DischargerActionsCallbackInterfaces.Add(instance);
+            @Joystick1.started += instance.OnJoystick1;
+            @Joystick1.performed += instance.OnJoystick1;
+            @Joystick1.canceled += instance.OnJoystick1;
+            @Joystick2.started += instance.OnJoystick2;
+            @Joystick2.performed += instance.OnJoystick2;
+            @Joystick2.canceled += instance.OnJoystick2;
+        }
+
+        private void UnregisterCallbacks(IDischargerActions instance)
+        {
+            @Joystick1.started -= instance.OnJoystick1;
+            @Joystick1.performed -= instance.OnJoystick1;
+            @Joystick1.canceled -= instance.OnJoystick1;
+            @Joystick2.started -= instance.OnJoystick2;
+            @Joystick2.performed -= instance.OnJoystick2;
+            @Joystick2.canceled -= instance.OnJoystick2;
+        }
+
+        public void RemoveCallbacks(IDischargerActions instance)
+        {
+            if (m_Wrapper.m_DischargerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDischargerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DischargerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DischargerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DischargerActions @Discharger => new DischargerActions(this);
     public interface IHoistActions
     {
         void OnCross(InputAction.CallbackContext context);
@@ -1054,5 +1160,10 @@ public partial class @ControllerSetup: IInputActionCollection2, IDisposable
         void OnRightPushButton6(InputAction.CallbackContext context);
         void OnRightPushButton7(InputAction.CallbackContext context);
         void OnRightPushButton8(InputAction.CallbackContext context);
+    }
+    public interface IDischargerActions
+    {
+        void OnJoystick1(InputAction.CallbackContext context);
+        void OnJoystick2(InputAction.CallbackContext context);
     }
 }

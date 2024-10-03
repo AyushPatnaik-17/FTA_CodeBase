@@ -596,6 +596,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Discharger",
+            "id": "76c80db8-af1e-446e-8e0b-22ac84741ac1",
+            "actions": [
+                {
+                    "name": "Joystick 1",
+                    "type": "Value",
+                    "id": "39624954-2cdc-4cef-8e37-3ed26475769f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick 2",
+                    "type": "Value",
+                    "id": "90e6c3ed-d9dc-4639-8a22-b192167f0649",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3994e858-dc75-41a1-8e5f-151637d5f174",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6286aeb-7dd7-4eb6-a8e4-37d1a2b7e88f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
