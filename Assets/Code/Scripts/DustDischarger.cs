@@ -4,32 +4,39 @@ using UnityEngine;
 using AlligatorUtils;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Threading.Tasks;
 
 public class DustDischarger : MonoBehaviour
 {
-    public Transform Target;
-    public Transform Reference;
+    public Transform Target, Reference;
     public float DistanceThreshold, AlignmentThreshold;
-    public float LerpTime, DischargeTime, DischargeQuantinty, DischargeRate;
+    public float LerpTime, DischargeQuantinty, DischargeRate;
+
+    private float _dischargeTime;
+
+
     
     public Button button;
 
     private SkinnedMeshRenderer _skinnedMeshRenderer;
-    private bool _isDischarging = false;
+    private bool _isAtPosition = false;
     private void Awake()
     {
         _skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-        button.onClick.AddListener(delegate
+        _dischargeTime = DischargeQuantinty / DischargeRate;
+        button.onClick.AddListener(async delegate
         {
-            _isDischarging = !_isDischarging;
-            if (_isDischarging)
+            _isAtPosition = !_isAtPosition;
+            if (_isAtPosition)
             {
-                StartCoroutine(MoveDischarger(100f, 0f));
-                //conver this to async and then start discharging
+                // StartCoroutine(MoveDischarger(100f, 0f));
+                await MoveDischarger(100f, 0f);
+                Debug.Log("discharge moved");
+                await StartDischarging();
             }
             else
             {
-                StartCoroutine(MoveDischarger(0f, 100f));
+                await MoveDischarger(0f, 100f);
             }
         });
     }
@@ -38,22 +45,29 @@ public class DustDischarger : MonoBehaviour
     {
         var distance = Vector3.Distance(Reference.position, Target.position);
         var yAlignment = Mathf.Abs(Reference.position.y - Target.position.y);
-        Debug.Log($"distance {distance}, yAlignment {yAlignment}");
+        //Debug.Log($"distance {distance}, yAlignment {yAlignment}");
         // bool isAlignedOnYAxis = yAlignment < AlignmentThreshold;
         bool isAlignedOnYAxis = AreTransformsAligned(Reference, Target);
-        if (distance <= DistanceThreshold && !_isDischarging && isAlignedOnYAxis)
+        if (distance <= DistanceThreshold && !_isAtPosition && isAlignedOnYAxis)
         {
-            _isDischarging = true;
-            StartCoroutine(MoveDischarger(100f, 0f));
+            _isAtPosition = true;
+            StartDischarger();
         }
-        // if(_isDischarging)
-        // {
-        //     _isDischarging = false;
-        //     StartCoroutine(MoveDischarger(0f, 100f));
-        // }
     }
 
-    private IEnumerator MoveDischarger(float fromPercent, float toPercent)
+    private async void StartDischarger()
+    {
+        if (!_isAtPosition)
+        {
+            "Discharger not in position".Print();
+            return;
+        }
+
+        await MoveDischarger(100f, 0f);
+        await StartDischarging();
+
+    }
+    private async Task MoveDischarger(float fromPercent, float toPercent)
     {
         float elapsedTime = 0f;
         while (elapsedTime <= LerpTime)
@@ -61,20 +75,29 @@ public class DustDischarger : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float lerpFactor = elapsedTime / LerpTime;
             _skinnedMeshRenderer.SetBlendShapeWeight(0, Mathf.Lerp(fromPercent, toPercent, lerpFactor));
-            yield return null;
+            await Task.Yield();
         }
+         _skinnedMeshRenderer.SetBlendShapeWeight(0, toPercent);
     }
 
-    private IEnumerator StartDischarging()
+    private async Task StartDischarging()
     {
-        yield return null;
+        float elapsedTime = 0f;
+        while (elapsedTime <= _dischargeTime)
+        {
+            elapsedTime += Time.deltaTime;
+            await Task.Yield();
+        }
+        Debug.Log("discharge complete");
+        await MoveDischarger(0f, 100f);
+
     }
 
     bool AreTransformsAligned(Transform a, Transform b)
     {
         Vector3 directionAB = (b.position - a.position).normalized;
         float dotProduct = Mathf.Abs(Vector3.Dot(a.forward.normalized, directionAB));
-        Debug.Log("dotProduct: " + dotProduct);
+        //Debug.Log("dotProduct: " + dotProduct);
         return dotProduct <= 1 - AlignmentThreshold;
     }
 }
