@@ -6,9 +6,14 @@ using UnityEngine;
 
 public class UIHandler : MonoBehaviour
 {
-    [Header("HUD")]
+    [Header("HUD Related")]
     public GameObject[] RotaryIndicators = new GameObject[4];
     public TextMeshProUGUI InputText;
+
+    [Header("Level Related")]
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject LevelPanelMain;
+    [SerializeField] private GameObject StepPanel;
 
     private RotaryUI _rotatoryUI;
     public RotaryUI RotaryUI
