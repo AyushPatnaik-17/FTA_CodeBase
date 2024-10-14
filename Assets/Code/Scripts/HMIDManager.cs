@@ -56,7 +56,7 @@ public class HMIDManager : MonoBehaviour
     {
         int index = Random.Range(0, Abnormalities.Count);
         _currentAbnormality = Abnormalities[index];
-        _currentAbnormality.TriggerAction();
+        _currentAbnormality.TriggerAbnormality();
     }
 
     // public bool IsAbnormalityActive()

@@ -261,7 +261,7 @@ public class InputHandler : MonoBehaviour
         _upShift.performed += ctx => 
         {
            ActiveRotary.RotateUp();
-           UIHandler.Instance.ChangeRotaryCountText
+           UIHandler.Instance.RotaryUI.ChangeRotaryCountText
            (
             GetActiveRotaryNumber(),
             ActiveRotary.Value,
@@ -272,7 +272,7 @@ public class InputHandler : MonoBehaviour
         _downshift.performed += ctx => 
         {
             ActiveRotary.RotateDown();
-            UIHandler.Instance.ChangeRotaryCountText
+            UIHandler.Instance.RotaryUI.ChangeRotaryCountText
             (
                 GetActiveRotaryNumber(),
                 ActiveRotary.Value,
@@ -283,8 +283,8 @@ public class InputHandler : MonoBehaviour
     private void SetActiveRotary(Rotary rotary)
     {
         ActiveRotary = rotary;
-        UIHandler.Instance.SetRotaryAsActive(GetActiveRotaryNumber());
-        UIHandler.Instance.ChangeRotaryCountText
+        UIHandler.Instance.RotaryUI.SetRotaryAsActive(GetActiveRotaryNumber());
+        UIHandler.Instance.RotaryUI.ChangeRotaryCountText
         (
             GetActiveRotaryNumber(),
             ActiveRotary.Value,
