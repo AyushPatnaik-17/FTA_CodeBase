@@ -11,8 +11,9 @@ public enum LockStatus { Locked, Unlocked }
 [Serializable]
 public class Step
 {
-    public string Name;
+    public string Name, Description;
     public int MaxScore, CurrentScore;
+    public float TimeLimit;
     public List<Assessment> Assessments;
     public List<Abnormality> Abnormalities;
     public CompletionStatus CompletionStatus;

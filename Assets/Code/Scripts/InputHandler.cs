@@ -92,10 +92,14 @@ public class InputHandler : MonoBehaviour
     private InputAction _rightStick, _leftStick;
     #endregion
 
+    private UIHandler _uiHandler;
+
     private void Awake()
     {
         ControllerSetup = new ControllerSetup();
         ControllerSetup.ControlsActions controls = ControllerSetup.Controls;
+
+        _uiHandler = FindObjectOfType<UIHandler>(true);
 
         SetupRotaries(controls);
         SetupPushButtons(controls);
@@ -108,7 +112,7 @@ public class InputHandler : MonoBehaviour
     private void Update()
     {
         string text = $"{RightArmRest.GetOutputString()}  {LeftArmRest.GetOutputString()}";
-        UIHandler.Instance.DisplayInputText(text);
+        _uiHandler.DisplayInputText(text);
     }
     public void OnEnable() => ControllerSetup.Controls.Enable();
     public void OnDisable() => ControllerSetup.Controls.Disable();
@@ -261,7 +265,7 @@ public class InputHandler : MonoBehaviour
         _upShift.performed += ctx => 
         {
            ActiveRotary.RotateUp();
-           UIHandler.Instance.RotaryUI.ChangeRotaryCountText
+           _uiHandler.RotaryUI.ChangeRotaryCountText
            (
             GetActiveRotaryNumber(),
             ActiveRotary.Value,
@@ -272,7 +276,7 @@ public class InputHandler : MonoBehaviour
         _downshift.performed += ctx => 
         {
             ActiveRotary.RotateDown();
-            UIHandler.Instance.RotaryUI.ChangeRotaryCountText
+            _uiHandler.RotaryUI.ChangeRotaryCountText
             (
                 GetActiveRotaryNumber(),
                 ActiveRotary.Value,
@@ -283,8 +287,8 @@ public class InputHandler : MonoBehaviour
     private void SetActiveRotary(Rotary rotary)
     {
         ActiveRotary = rotary;
-        UIHandler.Instance.RotaryUI.SetRotaryAsActive(GetActiveRotaryNumber());
-        UIHandler.Instance.RotaryUI.ChangeRotaryCountText
+        _uiHandler.RotaryUI.SetRotaryAsActive(GetActiveRotaryNumber());
+        _uiHandler.RotaryUI.ChangeRotaryCountText
         (
             GetActiveRotaryNumber(),
             ActiveRotary.Value,

@@ -15,38 +15,44 @@ public class UIHandler : MonoBehaviour
     [SerializeField] private GameObject LevelPanelMain;
     [SerializeField] private GameObject StepPanel;
 
-    private RotaryUI _rotatoryUI;
+    private RotaryUI _rotaryUI;
+    private LevelUI _levelUI;
     public RotaryUI RotaryUI
     {
         get
         {
             "Accessing RotaryUI".Print();
-            return _rotatoryUI;
+            return _rotaryUI;
         }
         set
         {
-            _rotatoryUI = value;
+            _rotaryUI = value;
             "Setting RotaryUI".Print();
         }
     }
-    public static UIHandler Instance;
 
-    private void Awake()
+    public LevelUI LevelUI
     {
-        if (Instance == null)
+        get
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            "Accessing LevelUI".Print();
+            return _levelUI;
         }
-        else
+        set
         {
-            Destroy(gameObject); 
+            _levelUI = value;
+            "Setting LevelUI".Print();
         }
     }
-
-    private void Start()
+    // public static UIHandler Instance;
+    private void OnEnable()
     {
-        RotaryUI = new RotaryUI(RotaryIndicators);    
+        _rotaryUI = new RotaryUI(RotaryIndicators);
+        _levelUI = new LevelUI
+        (
+            MainMenu, 
+            this.transform
+        ); 
     }
     public void DisplayInputText(string text)
     {
