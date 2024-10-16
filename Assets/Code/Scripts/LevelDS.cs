@@ -13,7 +13,7 @@ public class Step
 {
     public string Name, Description;
     public int MaxScore, CurrentScore;
-    public float TimeLimit;
+    public float TimeLimitInSeconds;
     public List<Assessment> Assessments;
     public List<Abnormality> Abnormalities;
     public CompletionStatus CompletionStatus;

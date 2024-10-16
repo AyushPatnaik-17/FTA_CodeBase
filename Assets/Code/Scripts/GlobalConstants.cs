@@ -12,6 +12,7 @@ public static class GlobalPaths
 public static class ConstantStrings
 {
     public const string LEVEL_MAIN_PANEL = "LevelMainPanel";
+    public const string LEVEL_COMPLETE = "LevelComplete";
     public const string STEP_PANEL = "StepPanel";
     public const string LEVEL_NAME = "LevelName";
     public const string STEP_NAME = "StepName";
@@ -25,6 +26,6 @@ public static class ConstantStrings
     public const string HOME = "Home";
     public const string REDO = "Redo";
     public const string SCORE_BOARD = "ScoreParent";
-    public const string NEXT_STEP = "NextStepBtn";
+    public const string NEXT = "NextBtn";
     public const string SCORE = "Score";
 }

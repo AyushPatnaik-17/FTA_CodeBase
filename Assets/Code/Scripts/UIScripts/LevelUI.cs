@@ -1,4 +1,4 @@
-using System.Collections;
+                        using System.Collections;
 using System.Collections.Generic;
 using AlligatorUtils;
 using TMPro;
@@ -10,11 +10,11 @@ public class LevelUI
 {
     private LevelManager _levelManager;
     private GameObject _mainMenu, _scoreBoard;
-    private Transform _inGameUI, _stepPanel, _levelMainPanel;
+    private Transform _inGameUI, _stepPanel, _levelMainPanel, _levelCompletePanel;
 
-    private TextMeshProUGUI _levelName, _timeLeft, _stepName, _stepDescription, _score; 
+    private TextMeshProUGUI _levelName, _timeLeft, _stepName, _stepDescription, _stepScore, _levelScore; 
     private Transform _stepListHolder;
-    private Button _homeBtnMain, _startLevelBtn,_markCompleteBtn, _homeBtnStep, _redoBtn, _nextLevelBtn;
+    private Button _homeBtnMain, _startLevelBtn,_markCompleteBtn, _homeBtnStep, _redoBtn, _nextStepBtn, _nextLevelBtn;
 
     private GameObject _stepItemPrefab;
     
@@ -35,6 +35,8 @@ public class LevelUI
 
         _levelMainPanel = _inGameUI.GetChildWithName(ConstantStrings.LEVEL_MAIN_PANEL);
         _stepPanel = _inGameUI.GetChildWithName(ConstantStrings.STEP_PANEL);
+        _levelCompletePanel = _inGameUI.GetChildWithName(ConstantStrings.LEVEL_COMPLETE);
+
         _levelName = _levelMainPanel.GetChildWithName(ConstantStrings.LEVEL_NAME).GetComponent<TextMeshProUGUI>();
         _stepListHolder = _levelMainPanel.GetChildWithName(ConstantStrings.STEP_ITEM_HOLDER);
         _homeBtnMain = _levelMainPanel.GetChildWithName(ConstantStrings.HOME).GetComponent<Button>();
@@ -48,8 +50,11 @@ public class LevelUI
         _stepDescription = _stepPanel.GetChildWithName(ConstantStrings.DESCRIPTION).GetComponent<TextMeshProUGUI>();
         _redoBtn = _stepPanel.GetChildWithName(ConstantStrings.REDO).GetComponent<Button>();
 
-        _score = _scoreBoard.transform.GetChildWithName(ConstantStrings.SCORE).GetComponent<TextMeshProUGUI>();
-        _nextLevelBtn = _scoreBoard.transform.GetChildWithName(ConstantStrings.NEXT_STEP).GetComponent<Button>();
+        _stepScore = _scoreBoard.transform.GetChildWithName(ConstantStrings.SCORE).GetComponent<TextMeshProUGUI>();
+        _nextStepBtn = _scoreBoard.transform.GetChildWithName(ConstantStrings.NEXT).GetComponent<Button>();
+
+        _levelScore = _levelCompletePanel.GetChildWithName(ConstantStrings.SCORE).GetComponent<TextMeshProUGUI>();
+        _nextLevelBtn = _levelCompletePanel.GetChildWithName(ConstantStrings.NEXT).GetComponent<Button>();
 
         _stepItemPrefab = Resources.Load(GlobalPaths.STEP_LIST_ELEMENT_PATH) as GameObject;
 
@@ -82,14 +87,12 @@ public class LevelUI
         (
             delegate
             {
-                Level currentLevel = _levelManager.CurrentLevel;
-                Step currentStep = _levelManager.CurrentStep;
-                _score.text = currentStep.CurrentScore.ToString();
+                _stepScore.text = _levelManager.CurrentStep.CurrentScore.ToString();
                 _scoreBoard.SetActive(true);
             }
         );
 
-        _nextLevelBtn.onClick.AddListener
+        _nextStepBtn.onClick.AddListener
         (
             delegate
             {
@@ -98,29 +101,55 @@ public class LevelUI
                 DisplayCurrentStep();
             }
         );
+        _nextLevelBtn.onClick.AddListener
+        (
+            delegate
+            {
+                DispalyNextLevel();
+            }
+        );
 
     }
     
     public void DisplayCurrentStep()
     {
-        Debug.Log(_levelManager);
-        Level currentLevel = _levelManager.CurrentLevel;
         Step currentStep = _levelManager.CurrentStep;
-
-        _stepName.text = currentStep.Name;
+        int sNo = _levelManager.GetStepIndex() + 1;
+        _stepName.text = $"{sNo}.{currentStep.Name}";
         _stepDescription.text = currentStep.Description;
-        _timeLeft.text = currentStep.TimeLimit.ToString();
+        _timeLeft.text = currentStep.TimeLimitInSeconds.ToString();
     }
-    public void DisplayTimeLeft(int timeLeft)
+    public void DisplayTimeLeft(int minutes, int seconds)
     {
+        _timeLeft.text = $"{minutes}:{seconds}";
+    }
+
+    public void ProceedToNextLevel()
+    {
+        _stepPanel.gameObject.SetActive(false);
+        _levelScore.text = _levelManager.FinalScore.ToString();
+        _levelCompletePanel.gameObject.SetActive(true);
 
     }
 
+    private void DispalyNextLevel()
+    {
+        DisplayLevelInfo(_levelManager.CurrentLevel, _levelManager.GetLevelIndex() + 1);
+        _levelMainPanel.gameObject.SetActive(true);
+        _stepPanel.gameObject.SetActive(false);
+        _levelCompletePanel.gameObject.SetActive(false);
+    }
     public void DisplayLevelInfo(Level currentLevel, int sNum)
     {
         _levelName.text = $"{sNum}. {currentLevel.Name}";
         var steps = currentLevel.Steps;
         int len = steps.Count;
+
+        for (int i = _stepListHolder.childCount - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(_stepListHolder.GetChild(i).gameObject);
+        }
+
         for (int i = 0; i < len; i++)
         {
             GameObject stepItem = MonoBehaviour.Instantiate(_stepItemPrefab, _stepListHolder);
@@ -128,11 +157,6 @@ public class LevelUI
             stepItem.name = steps[i].Name;
             stepName.text = $"{i+1}. {steps[i].Name}";
         }
-    }
-
-    public void HandleStepUI()
-    {
-
     }
 }
  
